@@ -1,1 +1,36 @@
 @import "tailwindcss";
+@import "./styles/design-tokens.css";
+
+@theme inline {
+  --color-canvas: var(--color-canvas);
+  --color-primary: var(--color-primary);
+  --color-ink: var(--color-ink);
+  --color-body: var(--color-body);
+  --color-muted: var(--color-muted);
+  --color-surface-card: var(--color-surface-card);
+  --color-surface-dark: var(--color-surface-dark);
+  --color-hairline: var(--color-hairline);
+  --color-error: var(--color-error);
+  --font-display: var(--font-display);
+  --font-body: var(--font-body);
+  --font-code: var(--font-code);
+}
+
+body {
+  font-family: var(--font-body);
+  background: var(--color-canvas);
+  color: var(--color-body);
+  margin: 0;
+  min-height: 100vh;
+}
+
+.font-display {
+  font-family: var(--font-display);
+  font-weight: 400;
+  letter-spacing: -0.02em;
+  color: var(--color-ink);
+}
+
+.font-code {
+  font-family: var(--font-code);
+}

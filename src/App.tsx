@@ -1,11 +1,15 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { AppShell } from "@/components/layout/AppShell";
+import { HomePage } from "@/pages/HomePage";
 
 export default function App() {
   return (
     <BrowserRouter>
-      <Routes>
-        <Route path="/" element={<div className="p-8">CVPro</div>} />
-      </Routes>
+      <AppShell>
+        <Routes>
+          <Route path="/" element={<HomePage />} />
+        </Routes>
+      </AppShell>
     </BrowserRouter>
   );
 }
