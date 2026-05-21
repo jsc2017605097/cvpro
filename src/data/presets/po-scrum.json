@@ -1,0 +1,61 @@
+{
+  "id": "po-scrum",
+  "slug": "po-scrum",
+  "title": { "vi": "CV Product Owner / Scrum Master", "en": "Product Owner / Scrum Master CV" },
+  "shortDescription": {
+    "vi": "Backlog, agile metrics, delivery facilitation",
+    "en": "Backlog, agile metrics, delivery facilitation"
+  },
+  "tags": ["PO", "Scrum", "Agile"],
+  "market": "both",
+  "category": "product",
+  "defaultLanguage": "vi",
+  "experienceLevel": "mid",
+  "recommendedLayouts": ["modern-single", "compact-two"],
+  "sections": [
+    {
+      "id": "summary",
+      "required": true,
+      "hint": {
+        "vi": "PO hay SM (hoặc dual), sản phẩm/domain",
+        "en": "PO or SM (or dual), product/domain"
+      }
+    },
+    {
+      "id": "experience",
+      "required": true,
+      "maxItems": 4,
+      "hint": {
+        "vi": "Velocity, release cadence, team health",
+        "en": "Velocity, release cadence, team health"
+      }
+    },
+    {
+      "id": "skills",
+      "required": true,
+      "hint": {
+        "vi": "Scrum, Kanban, facilitation, roadmap",
+        "en": "Scrum, Kanban, facilitation, roadmap"
+      }
+    },
+    {
+      "id": "education",
+      "required": false,
+      "hint": { "vi": "Tùy chọn", "en": "Optional" }
+    },
+    {
+      "id": "certifications",
+      "required": false,
+      "hint": {
+        "vi": "PSM, PSPO, SAFe nếu có",
+        "en": "PSM, PSPO, SAFe if any"
+      }
+    }
+  ],
+  "promptHints": [
+    "Clarify PO vs SM responsibilities based on user input",
+    "Include agile metrics only when user supplies numbers",
+    "Emphasize collaboration with dev and business"
+  ],
+  "skillKeywords": ["Scrum", "Kanban", "Jira", "Backlog", "User story", "Facilitation", "Roadmap"]
+}

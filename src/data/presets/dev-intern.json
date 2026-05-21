@@ -1,0 +1,65 @@
+{
+  "id": "dev-intern",
+  "slug": "dev-intern",
+  "title": { "vi": "CV Intern / Fresher IT", "en": "IT Intern / Fresher CV" },
+  "shortDescription": {
+    "vi": "Sinh viên, thực tập: project cá nhân, đồ án, CLB",
+    "en": "Student or intern: personal projects, coursework, clubs"
+  },
+  "tags": ["IT", "Intern", "Fresher"],
+  "market": "both",
+  "category": "it",
+  "defaultLanguage": "vi",
+  "experienceLevel": "intern",
+  "recommendedLayouts": ["modern-single", "minimal-ats"],
+  "sections": [
+    {
+      "id": "summary",
+      "required": true,
+      "hint": {
+        "vi": "Định hướng nghề, stack đang học, mục tiêu thực tập",
+        "en": "Career direction, learning stack, internship goals"
+      }
+    },
+    {
+      "id": "education",
+      "required": true,
+      "hint": {
+        "vi": "Trường, ngành, GPA/điểm nổi bật, môn liên quan",
+        "en": "School, major, GPA, relevant coursework"
+      }
+    },
+    {
+      "id": "projects",
+      "required": true,
+      "maxItems": 5,
+      "hint": {
+        "vi": "Đồ án, portfolio, hackathon, repo GitHub",
+        "en": "Thesis, portfolio, hackathons, GitHub repos"
+      }
+    },
+    {
+      "id": "skills",
+      "required": true,
+      "hint": {
+        "vi": "Ngôn ngữ, framework, tool đã dùng trong project",
+        "en": "Languages, frameworks, tools used in projects"
+      }
+    },
+    {
+      "id": "experience",
+      "required": false,
+      "maxItems": 2,
+      "hint": {
+        "vi": "Thực tập ngắn hoặc freelance nhỏ nếu có",
+        "en": "Short internships or small freelance if any"
+      }
+    }
+  ],
+  "promptHints": [
+    "Emphasize learning ability and project evidence over years of experience",
+    "Never fabricate internship employers",
+    "One page maximum"
+  ],
+  "skillKeywords": ["Java", "Python", "Git", "HTML", "CSS", "SQL", "React"]
+}

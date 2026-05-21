@@ -1,0 +1,61 @@
+{
+  "id": "pm-senior",
+  "slug": "pm-senior",
+  "title": { "vi": "CV PM / Program Manager Senior", "en": "Senior PM / Program Manager CV" },
+  "shortDescription": {
+    "vi": "Multi-project, P&L, executive communication",
+    "en": "Multi-project, P&L, executive communication"
+  },
+  "tags": ["PM", "Senior", "Program"],
+  "market": "both",
+  "category": "product",
+  "defaultLanguage": "vi",
+  "experienceLevel": "lead",
+  "recommendedLayouts": ["modern-single", "compact-two"],
+  "sections": [
+    {
+      "id": "summary",
+      "required": true,
+      "hint": {
+        "vi": "Portfolio scale, governance, C-level interface",
+        "en": "Portfolio scale, governance, C-level interface"
+      }
+    },
+    {
+      "id": "experience",
+      "required": true,
+      "maxItems": 6,
+      "hint": {
+        "vi": "Program outcomes, transformation, cost saved",
+        "en": "Program outcomes, transformation, cost saved"
+      }
+    },
+    {
+      "id": "skills",
+      "required": true,
+      "hint": {
+        "vi": "Portfolio management, vendor, change management",
+        "en": "Portfolio management, vendor, change management"
+      }
+    },
+    {
+      "id": "education",
+      "required": false,
+      "hint": { "vi": "Ngắn", "en": "Brief" }
+    },
+    {
+      "id": "certifications",
+      "required": false,
+      "hint": {
+        "vi": "PMP, PMI-ACP, SAFe nếu có",
+        "en": "PMP, PMI-ACP, SAFe if any"
+      }
+    }
+  ],
+  "promptHints": [
+    "Executive summary tone — outcomes over task lists",
+    "Show cross-functional leadership with evidence",
+    "Two pages max only if user has 10+ years"
+  ],
+  "skillKeywords": ["Program management", "P&L", "Governance", "Vendor", "Change management", "PMP"]
+}

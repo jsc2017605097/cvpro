@@ -1,0 +1,62 @@
+{
+  "id": "dev-fullstack",
+  "slug": "dev-fullstack",
+  "title": { "vi": "CV Full-stack Engineer", "en": "Full-stack Engineer CV" },
+  "shortDescription": {
+    "vi": "FE + BE + deploy: breadth end-to-end delivery",
+    "en": "FE + BE + deploy: end-to-end delivery breadth"
+  },
+  "tags": ["IT", "Full-stack"],
+  "market": "both",
+  "category": "it",
+  "defaultLanguage": "vi",
+  "experienceLevel": "mid",
+  "recommendedLayouts": ["modern-single", "compact-two"],
+  "sections": [
+    {
+      "id": "summary",
+      "required": true,
+      "hint": {
+        "vi": "Stack full-loop: UI, API, DB, hosting",
+        "en": "Full-loop stack: UI, API, DB, hosting"
+      }
+    },
+    {
+      "id": "skills",
+      "required": true,
+      "hint": {
+        "vi": "Tách Frontend / Backend / DevOps cơ bản",
+        "en": "Split Frontend / Backend / basic DevOps"
+      }
+    },
+    {
+      "id": "experience",
+      "required": true,
+      "maxItems": 4,
+      "hint": {
+        "vi": "Feature ship từ UI đến production",
+        "en": "Features shipped from UI to production"
+      }
+    },
+    {
+      "id": "projects",
+      "required": false,
+      "maxItems": 3,
+      "hint": {
+        "vi": "App deploy được, link live nếu có",
+        "en": "Deployed apps with live links if available"
+      }
+    },
+    {
+      "id": "education",
+      "required": false,
+      "hint": { "vi": "Tùy chọn", "en": "Optional" }
+    }
+  ],
+  "promptHints": [
+    "Show ownership across the whole delivery path",
+    "Include deployment and monitoring when applicable",
+    "Balance FE and BE depth — do not list every tool ever touched"
+  ],
+  "skillKeywords": ["React", "Node.js", "REST", "PostgreSQL", "Docker", "Vercel", "TypeScript"]
+}

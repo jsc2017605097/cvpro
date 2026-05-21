@@ -1,0 +1,65 @@
+{
+  "id": "dev-mid-senior",
+  "slug": "dev-mid-senior",
+  "title": { "vi": "CV Developer Mid / Senior", "en": "Mid / Senior Developer CV" },
+  "shortDescription": {
+    "vi": "3+ năm: impact kỹ thuật, ownership, mentoring nhẹ",
+    "en": "3+ years: technical impact, ownership, light mentoring"
+  },
+  "tags": ["IT", "Developer", "Senior"],
+  "market": "both",
+  "category": "it",
+  "defaultLanguage": "vi",
+  "experienceLevel": "senior",
+  "recommendedLayouts": ["modern-single", "compact-two"],
+  "sections": [
+    {
+      "id": "summary",
+      "required": true,
+      "hint": {
+        "vi": "Vai trò, domain, scale hệ thống đã làm",
+        "en": "Role, domain, system scale delivered"
+      }
+    },
+    {
+      "id": "experience",
+      "required": true,
+      "maxItems": 5,
+      "hint": {
+        "vi": "Bullet STAR, số liệu (latency, users, cost)",
+        "en": "STAR bullets with metrics (latency, users, cost)"
+      }
+    },
+    {
+      "id": "skills",
+      "required": true,
+      "hint": {
+        "vi": "Core stack + architecture patterns + cloud",
+        "en": "Core stack, architecture patterns, cloud"
+      }
+    },
+    {
+      "id": "projects",
+      "required": false,
+      "maxItems": 2,
+      "hint": {
+        "vi": "Side project hoặc open-source nổi bật",
+        "en": "Notable side projects or open source"
+      }
+    },
+    {
+      "id": "education",
+      "required": false,
+      "hint": {
+        "vi": "Ngắn gọn nếu đã nhiều kinh nghiệm",
+        "en": "Brief if experience section is strong"
+      }
+    }
+  ],
+  "promptHints": [
+    "Lead with measurable business and technical outcomes",
+    "Mention code review, design discussions, or mentoring when true",
+    "Do not inflate titles or team sizes"
+  ],
+  "skillKeywords": ["TypeScript", "System design", "AWS", "Docker", "CI/CD", "PostgreSQL"]
+}

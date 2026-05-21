@@ -1,0 +1,61 @@
+{
+  "id": "hr-recruiter",
+  "slug": "hr-recruiter",
+  "title": { "vi": "CV Nhân sự / Tuyển dụng", "en": "HR / Recruiter CV" },
+  "shortDescription": {
+    "vi": "TA, employer branding, full-cycle recruiting",
+    "en": "Talent acquisition, employer branding, full-cycle recruiting"
+  },
+  "tags": ["HR", "Recruiter"],
+  "market": "vn",
+  "category": "business",
+  "defaultLanguage": "vi",
+  "experienceLevel": "mid",
+  "recommendedLayouts": ["modern-single", "compact-two"],
+  "sections": [
+    {
+      "id": "summary",
+      "required": true,
+      "hint": {
+        "vi": "IT hay multi-industry, volume hire, employer brand",
+        "en": "IT or multi-industry, hiring volume, employer brand"
+      }
+    },
+    {
+      "id": "experience",
+      "required": true,
+      "maxItems": 4,
+      "hint": {
+        "vi": "Time-to-fill, offer acceptance, source mix",
+        "en": "Time-to-fill, offer acceptance, source mix"
+      }
+    },
+    {
+      "id": "skills",
+      "required": true,
+      "hint": {
+        "vi": "ATS, LinkedIn, interview, onboarding, C&B cơ bản",
+        "en": "ATS, LinkedIn, interviewing, onboarding, basic C&B"
+      }
+    },
+    {
+      "id": "education",
+      "required": false,
+      "hint": { "vi": "Tùy chọn", "en": "Optional" }
+    },
+    {
+      "id": "languages",
+      "required": false,
+      "hint": {
+        "vi": "Anh ngữ cho IT recruiting",
+        "en": "English for IT recruiting"
+      }
+    }
+  ],
+  "promptHints": [
+    "Quantify hiring outcomes where possible",
+    "Separate generalist HR vs dedicated TA if user clarifies",
+    "Professional and inclusive language"
+  ],
+  "skillKeywords": ["Recruitment", "ATS", "LinkedIn", "Interview", "Onboarding", "Employer branding"]
+}

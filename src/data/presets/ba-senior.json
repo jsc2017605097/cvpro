@@ -1,0 +1,61 @@
+{
+  "id": "ba-senior",
+  "slug": "ba-senior",
+  "title": { "vi": "CV BA Senior", "en": "Senior Business Analyst CV" },
+  "shortDescription": {
+    "vi": "Domain sâu, BRD/FRD, workshop, multi-stakeholder",
+    "en": "Deep domain, BRD/FRD, workshops, multi-stakeholder"
+  },
+  "tags": ["BA", "Senior"],
+  "market": "both",
+  "category": "product",
+  "defaultLanguage": "vi",
+  "experienceLevel": "senior",
+  "recommendedLayouts": ["modern-single", "compact-two"],
+  "sections": [
+    {
+      "id": "summary",
+      "required": true,
+      "hint": {
+        "vi": "Số năm, domain (banking, retail...), vai trò lead BA",
+        "en": "Years, domain (banking, retail...), lead BA role"
+      }
+    },
+    {
+      "id": "experience",
+      "required": true,
+      "maxItems": 5,
+      "hint": {
+        "vi": "Outcome nghiệp vụ, giảm rework, time-to-market",
+        "en": "Business outcomes, less rework, time-to-market"
+      }
+    },
+    {
+      "id": "skills",
+      "required": true,
+      "hint": {
+        "vi": "Elicitation, BPMN, agile ceremonies, data analysis",
+        "en": "Elicitation, BPMN, agile ceremonies, data analysis"
+      }
+    },
+    {
+      "id": "education",
+      "required": false,
+      "hint": { "vi": "Ngắn gọn", "en": "Brief" }
+    },
+    {
+      "id": "certifications",
+      "required": false,
+      "hint": {
+        "vi": "CBAP, PMP, agile cert nếu có",
+        "en": "CBAP, PMP, agile certs if any"
+      }
+    }
+  ],
+  "promptHints": [
+    "Translate features into measurable business value",
+    "Show facilitation of workshops and conflict resolution",
+    "Never invent regulatory or compliance claims"
+  ],
+  "skillKeywords": ["BRD", "FRD", "BPMN", "Stakeholder", "Agile", "SQL", "Workshop"]
+}

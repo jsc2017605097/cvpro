@@ -1,0 +1,61 @@
+{
+  "id": "pm-mid",
+  "slug": "pm-mid",
+  "title": { "vi": "CV Project Manager", "en": "Project Manager CV" },
+  "shortDescription": {
+    "vi": "Timeline, budget, risk, team size vừa",
+    "en": "Timeline, budget, risk, mid-size teams"
+  },
+  "tags": ["PM", "Project"],
+  "market": "vn",
+  "category": "product",
+  "defaultLanguage": "vi",
+  "experienceLevel": "mid",
+  "recommendedLayouts": ["modern-single", "compact-two"],
+  "sections": [
+    {
+      "id": "summary",
+      "required": true,
+      "hint": {
+        "vi": "Loại dự án (waterfall/agile), ngành, quy mô team",
+        "en": "Project type (waterfall/agile), industry, team size"
+      }
+    },
+    {
+      "id": "experience",
+      "required": true,
+      "maxItems": 5,
+      "hint": {
+        "vi": "On-time delivery, budget variance, scope managed",
+        "en": "On-time delivery, budget variance, scope managed"
+      }
+    },
+    {
+      "id": "skills",
+      "required": true,
+      "hint": {
+        "vi": "MS Project, Jira, risk register, reporting",
+        "en": "MS Project, Jira, risk register, reporting"
+      }
+    },
+    {
+      "id": "education",
+      "required": false,
+      "hint": { "vi": "Tùy chọn", "en": "Optional" }
+    },
+    {
+      "id": "certifications",
+      "required": false,
+      "hint": {
+        "vi": "PMP, PRINCE2, Scrum nếu có",
+        "en": "PMP, PRINCE2, Scrum if any"
+      }
+    }
+  ],
+  "promptHints": [
+    "Quantify delivery: on-time %, budget, team size",
+    "Separate project names user provided — no fake clients",
+    "Highlight risk and stakeholder management"
+  ],
+  "skillKeywords": ["PMP", "Agile", "Jira", "Risk management", "Budget", "Stakeholder", "MS Project"]
+}

@@ -1,0 +1,61 @@
+{
+  "id": "dev-devops",
+  "slug": "dev-devops",
+  "title": { "vi": "CV DevOps / SRE", "en": "DevOps / SRE CV" },
+  "shortDescription": {
+    "vi": "CI/CD, cloud, monitoring, infrastructure as code",
+    "en": "CI/CD, cloud, monitoring, infrastructure as code"
+  },
+  "tags": ["IT", "DevOps", "SRE"],
+  "market": "global",
+  "category": "it",
+  "defaultLanguage": "en",
+  "experienceLevel": "mid",
+  "recommendedLayouts": ["compact-two", "minimal-ats"],
+  "sections": [
+    {
+      "id": "summary",
+      "required": true,
+      "hint": {
+        "vi": "Cloud platform, IaC, reliability focus",
+        "en": "Cloud platform, IaC, reliability focus"
+      }
+    },
+    {
+      "id": "skills",
+      "required": true,
+      "hint": {
+        "vi": "AWS/GCP, Kubernetes, Terraform, observability",
+        "en": "AWS/GCP, Kubernetes, Terraform, observability"
+      }
+    },
+    {
+      "id": "experience",
+      "required": true,
+      "maxItems": 5,
+      "hint": {
+        "vi": "Pipeline, incident response, cost optimization",
+        "en": "Pipelines, incident response, cost optimization"
+      }
+    },
+    {
+      "id": "certifications",
+      "required": false,
+      "hint": {
+        "vi": "AWS/GCP/K8s certs nếu có",
+        "en": "AWS/GCP/K8s certifications if any"
+      }
+    },
+    {
+      "id": "education",
+      "required": false,
+      "hint": { "vi": "Optional", "en": "Optional" }
+    }
+  ],
+  "promptHints": [
+    "Use English for section content unless user requests Vietnamese",
+    "Emphasize SLOs, deployment frequency, MTTR when provided",
+    "Never claim certifications not supplied by user"
+  ],
+  "skillKeywords": ["Kubernetes", "Terraform", "AWS", "Docker", "GitHub Actions", "Prometheus", "Linux"]
+}

@@ -1,0 +1,62 @@
+{
+  "id": "qa-engineer",
+  "slug": "qa-engineer",
+  "title": { "vi": "CV QA / Tester", "en": "QA / Tester CV" },
+  "shortDescription": {
+    "vi": "Manual + automation, test plan, bug lifecycle",
+    "en": "Manual + automation, test plans, bug lifecycle"
+  },
+  "tags": ["IT", "QA", "Testing"],
+  "market": "both",
+  "category": "it",
+  "defaultLanguage": "vi",
+  "experienceLevel": "mid",
+  "recommendedLayouts": ["modern-single", "minimal-ats"],
+  "sections": [
+    {
+      "id": "summary",
+      "required": true,
+      "hint": {
+        "vi": "Loại sản phẩm test, manual vs auto",
+        "en": "Product types tested, manual vs automation"
+      }
+    },
+    {
+      "id": "skills",
+      "required": true,
+      "hint": {
+        "vi": "Tools: Jira, Postman, Selenium/Cypress, SQL",
+        "en": "Tools: Jira, Postman, Selenium/Cypress, SQL"
+      }
+    },
+    {
+      "id": "experience",
+      "required": true,
+      "maxItems": 4,
+      "hint": {
+        "vi": "Test coverage, defects prevented, release quality",
+        "en": "Coverage, defects caught, release quality"
+      }
+    },
+    {
+      "id": "projects",
+      "required": false,
+      "maxItems": 2,
+      "hint": {
+        "vi": "Framework test tự xây hoặc portfolio",
+        "en": "Self-built test frameworks or portfolio"
+      }
+    },
+    {
+      "id": "education",
+      "required": false,
+      "hint": { "vi": "Tùy chọn", "en": "Optional" }
+    }
+  ],
+  "promptHints": [
+    "Highlight risk reduction and release confidence",
+    "Separate manual and automation achievements clearly",
+    "Do not invent test metrics without user data"
+  ],
+  "skillKeywords": ["Selenium", "Cypress", "Jira", "Postman", "SQL", "Test plan", "API testing"]
+}

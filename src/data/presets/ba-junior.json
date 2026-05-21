@@ -1,0 +1,65 @@
+{
+  "id": "ba-junior",
+  "slug": "ba-junior",
+  "title": { "vi": "CV Business Analyst Junior", "en": "Junior Business Analyst CV" },
+  "shortDescription": {
+    "vi": "Phân tích nghiệp vụ, tài liệu, hỗ trợ workshop",
+    "en": "Business analysis, documentation, workshop support"
+  },
+  "tags": ["BA", "Product", "Junior"],
+  "market": "vn",
+  "category": "product",
+  "defaultLanguage": "vi",
+  "experienceLevel": "junior",
+  "recommendedLayouts": ["modern-single", "compact-two"],
+  "sections": [
+    {
+      "id": "summary",
+      "required": true,
+      "hint": {
+        "vi": "Domain quan tâm, kỹ năng phân tích & viết tài liệu",
+        "en": "Target domain, analysis and documentation skills"
+      }
+    },
+    {
+      "id": "skills",
+      "required": true,
+      "hint": {
+        "vi": "UML, user story, Excel, Jira, SQL cơ bản",
+        "en": "UML, user stories, Excel, Jira, basic SQL"
+      }
+    },
+    {
+      "id": "experience",
+      "required": false,
+      "maxItems": 3,
+      "hint": {
+        "vi": "Dự án đồ án, thực tập BA, hỗ trợ UAT",
+        "en": "Academic projects, BA internships, UAT support"
+      }
+    },
+    {
+      "id": "education",
+      "required": true,
+      "hint": {
+        "vi": "Ngành QTKD, CNTT, kinh tế...",
+        "en": "Business, IT, economics degrees"
+      }
+    },
+    {
+      "id": "projects",
+      "required": false,
+      "maxItems": 2,
+      "hint": {
+        "vi": "Case study phân tích quy trình",
+        "en": "Process analysis case studies"
+      }
+    }
+  ],
+  "promptHints": [
+    "Focus on requirements clarity and stakeholder communication",
+    "Mention BRD/user story work only if user confirms",
+    "Professional Vietnamese tone for VN market"
+  ],
+  "skillKeywords": ["User story", "BRD", "Jira", "Excel", "Workshop", "UAT", "SQL"]
+}

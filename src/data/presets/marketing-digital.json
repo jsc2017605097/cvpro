@@ -1,0 +1,62 @@
+{
+  "id": "marketing-digital",
+  "slug": "marketing-digital",
+  "title": { "vi": "CV Marketing Digital", "en": "Digital Marketing CV" },
+  "shortDescription": {
+    "vi": "Campaign, KPI ads/social, content & performance",
+    "en": "Campaigns, ads/social KPIs, content and performance"
+  },
+  "tags": ["Marketing", "Digital"],
+  "market": "vn",
+  "category": "business",
+  "defaultLanguage": "vi",
+  "experienceLevel": "mid",
+  "recommendedLayouts": ["modern-single", "compact-two"],
+  "sections": [
+    {
+      "id": "summary",
+      "required": true,
+      "hint": {
+        "vi": "Kênh chính (Meta, Google, TikTok), ngành hàng",
+        "en": "Main channels (Meta, Google, TikTok), vertical"
+      }
+    },
+    {
+      "id": "experience",
+      "required": true,
+      "maxItems": 4,
+      "hint": {
+        "vi": "ROAS, CPA, reach, conversion lift",
+        "en": "ROAS, CPA, reach, conversion lift"
+      }
+    },
+    {
+      "id": "skills",
+      "required": true,
+      "hint": {
+        "vi": "Ads Manager, Analytics, SEO/SEM, content tools",
+        "en": "Ads Manager, Analytics, SEO/SEM, content tools"
+      }
+    },
+    {
+      "id": "education",
+      "required": false,
+      "hint": { "vi": "Tùy chọn", "en": "Optional" }
+    },
+    {
+      "id": "projects",
+      "required": false,
+      "maxItems": 2,
+      "hint": {
+        "vi": "Campaign tiêu biểu, personal brand",
+        "en": "Flagship campaigns, personal brand"
+      }
+    }
+  ],
+  "promptHints": [
+    "Lead with measurable marketing KPIs",
+    "Vietnamese market context when language is vi",
+    "Do not invent campaign budgets"
+  ],
+  "skillKeywords": ["Facebook Ads", "Google Ads", "GA4", "SEO", "Content", "TikTok Ads", "CRM"]
+}

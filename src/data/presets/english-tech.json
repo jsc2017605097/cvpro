@@ -1,0 +1,59 @@
+{
+  "id": "english-tech",
+  "slug": "english-tech",
+  "title": { "vi": "CV Tech tiếng Anh (Global)", "en": "English Tech CV (Global)" },
+  "shortDescription": {
+    "vi": "Chuẩn quốc tế, ATS-friendly, nội dung tiếng Anh",
+    "en": "International standard, ATS-friendly, English content"
+  },
+  "tags": ["IT", "Global", "English"],
+  "market": "global",
+  "category": "it",
+  "defaultLanguage": "en",
+  "experienceLevel": "mid",
+  "recommendedLayouts": ["minimal-ats", "modern-single"],
+  "sections": [
+    {
+      "id": "summary",
+      "required": true,
+      "hint": {
+        "vi": "Write in English: role, years, core stack",
+        "en": "Role, years of experience, core stack in one paragraph"
+      }
+    },
+    {
+      "id": "skills",
+      "required": true,
+      "hint": {
+        "vi": "Nhóm kỹ năng kỹ thuật; danh sách thân thiện ATS",
+        "en": "Group technical skills; avoid tables — ATS-friendly list"
+      }
+    },
+    {
+      "id": "experience",
+      "required": true,
+      "maxItems": 5,
+      "hint": {
+        "en": "Action verbs, metrics, technologies per bullet"
+      }
+    },
+    {
+      "id": "education",
+      "required": false,
+      "hint": { "en": "Degree, institution, year — brief" }
+    },
+    {
+      "id": "projects",
+      "required": false,
+      "maxItems": 2,
+      "hint": { "en": "Notable projects with links" }
+    }
+  ],
+  "promptHints": [
+    "All CV content must be in English",
+    "Use US/UK neutral professional English",
+    "ATS-friendly: simple section headings, no graphics",
+    "Do not invent work authorization or visa status"
+  ],
+  "skillKeywords": ["TypeScript", "React", "Node.js", "AWS", "Agile", "CI/CD", "PostgreSQL"]
+}

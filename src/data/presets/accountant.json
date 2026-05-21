@@ -1,0 +1,64 @@
+{
+  "id": "accountant",
+  "slug": "accountant",
+  "title": { "vi": "CV Kế toán / Tài chính", "en": "Accountant / Finance CV" },
+  "shortDescription": {
+    "vi": "Báo cáo, thuế VN, kiểm toán nội bộ / GL",
+    "en": "Reporting, Vietnam tax, internal audit / GL"
+  },
+  "tags": ["Accounting", "Finance"],
+  "market": "vn",
+  "category": "business",
+  "defaultLanguage": "vi",
+  "experienceLevel": "mid",
+  "recommendedLayouts": ["modern-single", "minimal-ats"],
+  "sections": [
+    {
+      "id": "summary",
+      "required": true,
+      "hint": {
+        "vi": "Vị trí (tổng hợp, thuế, báo cáo), quy mô công ty",
+        "en": "Role (GL, tax, reporting), company size"
+      }
+    },
+    {
+      "id": "experience",
+      "required": true,
+      "maxItems": 4,
+      "hint": {
+        "vi": "Quy trình sổ sách, deadline báo cáo, compliance",
+        "en": "Book closing, reporting deadlines, compliance"
+      }
+    },
+    {
+      "id": "skills",
+      "required": true,
+      "hint": {
+        "vi": "Excel, MISA/FAST/ERP, luật thuế VN cơ bản",
+        "en": "Excel, MISA/FAST/ERP, basic VN tax law"
+      }
+    },
+    {
+      "id": "education",
+      "required": true,
+      "hint": {
+        "vi": "Bằng kế toán, chứng chỉ hành nghề nếu có",
+        "en": "Accounting degree, professional license if any"
+      }
+    },
+    {
+      "id": "certifications",
+      "required": false,
+      "hint": {
+        "vi": "CPA, ACCA, chứng chỉ thuế",
+        "en": "CPA, ACCA, tax certificates"
+      }
+    }
+  ],
+  "promptHints": [
+    "VN accounting and tax context when language is vi",
+    "Accuracy and compliance — avoid vague claims",
+    "Do not invent audit firm names"
+  ],
+  "skillKeywords": ["Excel", "MISA", "FAST", "Tax", "Financial reporting", "GL", "Internal audit"]
+}

@@ -1,0 +1,65 @@
+{
+  "id": "career-switcher",
+  "slug": "career-switcher",
+  "title": { "vi": "CV chuyển ngành sang IT", "en": "Career switch to IT CV" },
+  "shortDescription": {
+    "vi": "Transferable skills, portfolio, motivation rõ ràng",
+    "en": "Transferable skills, portfolio, clear motivation"
+  },
+  "tags": ["Career change", "IT"],
+  "market": "vn",
+  "category": "other",
+  "defaultLanguage": "vi",
+  "experienceLevel": "junior",
+  "recommendedLayouts": ["modern-single", "compact-two"],
+  "sections": [
+    {
+      "id": "summary",
+      "required": true,
+      "hint": {
+        "vi": "Câu chuyện chuyển ngành trung thực, mục tiêu 12 tháng",
+        "en": "Honest career switch narrative, 12-month goal"
+      }
+    },
+    {
+      "id": "skills",
+      "required": true,
+      "hint": {
+        "vi": "Skill cũ + stack IT mới (course, bootcamp)",
+        "en": "Previous skills + new IT stack (courses, bootcamp)"
+      }
+    },
+    {
+      "id": "projects",
+      "required": true,
+      "maxItems": 4,
+      "hint": {
+        "vi": "Portfolio, chứng chỉ, project chứng minh năng lực IT",
+        "en": "Portfolio, certs, projects proving IT ability"
+      }
+    },
+    {
+      "id": "experience",
+      "required": true,
+      "maxItems": 3,
+      "hint": {
+        "vi": "Kinh nghiệm cũ — nhấn transferable (logic, client, data)",
+        "en": "Past roles — highlight transferable skills"
+      }
+    },
+    {
+      "id": "education",
+      "required": false,
+      "hint": {
+        "vi": "Khóa học, bootcamp, self-study",
+        "en": "Courses, bootcamp, self-study"
+      }
+    }
+  ],
+  "promptHints": [
+    "Frame past career as asset, not weakness",
+    "Do not hide employment gaps — address briefly if user mentions",
+    "Motivation and learning path must feel authentic"
+  ],
+  "skillKeywords": ["Portfolio", "Bootcamp", "Git", "JavaScript", "Problem solving", "Self-learning"]
+}

@@ -1,0 +1,65 @@
+{
+  "id": "dev-junior",
+  "slug": "dev-junior",
+  "title": { "vi": "CV Developer Junior", "en": "Junior Developer CV" },
+  "shortDescription": {
+    "vi": "0–2 năm KN: stack rõ, project và internship",
+    "en": "0–2 years: clear stack, projects and internships"
+  },
+  "tags": ["IT", "Developer", "Junior"],
+  "market": "both",
+  "category": "it",
+  "defaultLanguage": "vi",
+  "experienceLevel": "junior",
+  "recommendedLayouts": ["modern-single", "compact-two"],
+  "sections": [
+    {
+      "id": "summary",
+      "required": true,
+      "hint": {
+        "vi": "2–3 câu, nêu stack chính và định hướng",
+        "en": "2–3 sentences: main stack and direction"
+      }
+    },
+    {
+      "id": "skills",
+      "required": true,
+      "hint": {
+        "vi": "Nhóm theo Frontend / Backend / Tooling",
+        "en": "Group by Frontend / Backend / Tooling"
+      }
+    },
+    {
+      "id": "projects",
+      "required": true,
+      "maxItems": 4,
+      "hint": {
+        "vi": "Ưu tiên repo GitHub có mô tả impact",
+        "en": "Prefer GitHub repos with measurable impact"
+      }
+    },
+    {
+      "id": "experience",
+      "required": false,
+      "maxItems": 3,
+      "hint": {
+        "vi": "Internship hoặc part-time, bullet có số liệu nếu có",
+        "en": "Internships; bullets with metrics when possible"
+      }
+    },
+    {
+      "id": "education",
+      "required": true,
+      "hint": {
+        "vi": "Bằng cấp, điểm nổi bật nếu phù hợp",
+        "en": "Degree and notable achievements"
+      }
+    }
+  ],
+  "promptHints": [
+    "Do not invent employers or dates; use placeholders only if user did not provide data",
+    "Use action verbs and quantify results where possible",
+    "Keep total CV length to 1 page equivalent"
+  ],
+  "skillKeywords": ["JavaScript", "TypeScript", "React", "Node.js", "Git", "SQL"]
+}

@@ -1,0 +1,62 @@
+{
+  "id": "dev-frontend",
+  "slug": "dev-frontend",
+  "title": { "vi": "CV Frontend Developer", "en": "Frontend Developer CV" },
+  "shortDescription": {
+    "vi": "UI/UX implementation, performance, accessibility",
+    "en": "UI implementation, performance, accessibility"
+  },
+  "tags": ["IT", "Frontend"],
+  "market": "both",
+  "category": "it",
+  "defaultLanguage": "vi",
+  "experienceLevel": "mid",
+  "recommendedLayouts": ["modern-single", "compact-two"],
+  "sections": [
+    {
+      "id": "summary",
+      "required": true,
+      "hint": {
+        "vi": "Framework chính, loại sản phẩm (B2B/B2C)",
+        "en": "Primary framework and product type"
+      }
+    },
+    {
+      "id": "skills",
+      "required": true,
+      "hint": {
+        "vi": "React/Vue, CSS, testing, build tools",
+        "en": "React/Vue, CSS, testing, build tools"
+      }
+    },
+    {
+      "id": "experience",
+      "required": true,
+      "maxItems": 4,
+      "hint": {
+        "vi": "UI scale, Core Web Vitals, design system",
+        "en": "UI scale, Core Web Vitals, design systems"
+      }
+    },
+    {
+      "id": "projects",
+      "required": false,
+      "maxItems": 3,
+      "hint": {
+        "vi": "Demo UI, component library, portfolio",
+        "en": "UI demos, component libraries, portfolio"
+      }
+    },
+    {
+      "id": "education",
+      "required": false,
+      "hint": { "vi": "Tùy chọn", "en": "Optional" }
+    }
+  ],
+  "promptHints": [
+    "Highlight performance, accessibility, and collaboration with design",
+    "Mention component architecture when relevant",
+    "Avoid backend-heavy bullets unless user provided them"
+  ],
+  "skillKeywords": ["React", "TypeScript", "CSS", "Tailwind", "Vitest", "Figma", "Webpack"]
+}

@@ -1,0 +1,61 @@
+{
+  "id": "sales-b2b",
+  "slug": "sales-b2b",
+  "title": { "vi": "CV Sales B2B", "en": "B2B Sales CV" },
+  "shortDescription": {
+    "vi": "Pipeline, doanh số, ngành hàng, key accounts",
+    "en": "Pipeline, revenue, industry, key accounts"
+  },
+  "tags": ["Sales", "B2B"],
+  "market": "vn",
+  "category": "business",
+  "defaultLanguage": "vi",
+  "experienceLevel": "mid",
+  "recommendedLayouts": ["modern-single", "compact-two"],
+  "sections": [
+    {
+      "id": "summary",
+      "required": true,
+      "hint": {
+        "vi": "Sản phẩm/dịch vụ bán, phạm vi territory",
+        "en": "Products/services sold, territory scope"
+      }
+    },
+    {
+      "id": "experience",
+      "required": true,
+      "maxItems": 5,
+      "hint": {
+        "vi": "Quota attainment, deal size, retention",
+        "en": "Quota attainment, deal size, retention"
+      }
+    },
+    {
+      "id": "skills",
+      "required": true,
+      "hint": {
+        "vi": "CRM, negotiation, presentation, industry knowledge",
+        "en": "CRM, negotiation, presentation, industry knowledge"
+      }
+    },
+    {
+      "id": "education",
+      "required": false,
+      "hint": { "vi": "Tùy chọn", "en": "Optional" }
+    },
+    {
+      "id": "languages",
+      "required": false,
+      "hint": {
+        "vi": "Tiếng Anh cho B2B quốc tế",
+        "en": "English for international B2B"
+      }
+    }
+  ],
+  "promptHints": [
+    "Numbers-first: quota %, revenue, number of accounts",
+    "Confidential client names can be anonymized as user specifies",
+    "Professional persuasive tone, not hype"
+  ],
+  "skillKeywords": ["CRM", "B2B", "Negotiation", "Pipeline", "Key account", "Salesforce"]
+}

@@ -1,0 +1,62 @@
+{
+  "id": "dev-backend",
+  "slug": "dev-backend",
+  "title": { "vi": "CV Backend Developer", "en": "Backend Developer CV" },
+  "shortDescription": {
+    "vi": "API, database, reliability, system design cơ bản",
+    "en": "APIs, databases, reliability, basic system design"
+  },
+  "tags": ["IT", "Backend"],
+  "market": "both",
+  "category": "it",
+  "defaultLanguage": "vi",
+  "experienceLevel": "mid",
+  "recommendedLayouts": ["compact-two", "minimal-ats"],
+  "sections": [
+    {
+      "id": "summary",
+      "required": true,
+      "hint": {
+        "vi": "Ngôn ngữ BE, loại traffic, data volume",
+        "en": "BE language, traffic profile, data volume"
+      }
+    },
+    {
+      "id": "skills",
+      "required": true,
+      "hint": {
+        "vi": "Languages, DB, messaging, caching",
+        "en": "Languages, DB, messaging, caching"
+      }
+    },
+    {
+      "id": "experience",
+      "required": true,
+      "maxItems": 5,
+      "hint": {
+        "vi": "API design, uptime, throughput, migrations",
+        "en": "API design, uptime, throughput, migrations"
+      }
+    },
+    {
+      "id": "projects",
+      "required": false,
+      "maxItems": 2,
+      "hint": {
+        "vi": "Microservice hoặc OSS backend",
+        "en": "Microservices or backend OSS"
+      }
+    },
+    {
+      "id": "education",
+      "required": false,
+      "hint": { "vi": "Tùy chọn", "en": "Optional" }
+    }
+  ],
+  "promptHints": [
+    "Focus on reliability, data integrity, and API contracts",
+    "Quantify scale (RPS, records, downtime) when user provides facts",
+    "Do not invent architecture diagrams details"
+  ],
+  "skillKeywords": ["Node.js", "Java", "PostgreSQL", "Redis", "Kafka", "REST", "gRPC"]
+}
