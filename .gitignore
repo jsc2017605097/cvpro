@@ -12,6 +12,15 @@ dist
 dist-ssr
 *.local
 
+# Local-only: planning, design specs, Cursor rules — không đưa vào git (xem COMMIT.md)
+.cursor/
+docs/
+BRAINSTORM.md
+PLANING.md
+REVIEW-PLANING.md
+DESIGN.md
+COMMIT.md
+
 # Editor directories and files
 .vscode/*
 !.vscode/extensions.json
