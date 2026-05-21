@@ -1,73 +1,65 @@
-# React + TypeScript + Vite
+# CVPro
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Webapp tạo CV chuyên nghiệp: chọn **profile preset** → **export rule** cho ChatGPT / Claude / Gemini → **import JSON** → xem trước → **tải PDF**.
 
-Currently, two official plugins are available:
+Không tích hợp API AI trong MVP — bạn dùng công cụ AI bên ngoài.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+## Yêu cầu
 
-## React Compiler
+- Node.js ≥ 20.12 (khuyến nghị ≥ 20.19)
+- npm
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## Cài đặt & chạy
 
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
-
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
-
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+```bash
+npm install
+npm run dev
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+Mở http://localhost:5173
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+## Luồng sử dụng
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+1. **Gallery** — Chọn mẫu CV theo vai trò (19 preset).
+2. **Wizard bước 1** — Chọn layout PDF (`modern-single`, `compact-two`, `minimal-ats`) và ngôn ngữ rule (vi/en).
+3. **Wizard bước 2** — Copy hoặc tải file `.txt` chứa export rule; dán vào AI và mô tả kinh nghiệm thật của bạn.
+4. **Wizard bước 3** — Dán phản hồi JSON từ AI; app validate theo schema Zod.
+5. **Wizard bước 4** — Xem trước tóm tắt và **Tải PDF**.
+
+Draft wizard được lưu trong `localStorage` (key `cvpro-draft`).
+
+## Scripts
+
+| Lệnh | Mô tả |
+|------|--------|
+| `npm run dev` | Dev server |
+| `npm run build` | Production build |
+| `npm run preview` | Xem bản build |
+| `npm run lint` | ESLint |
+| `npm test` | Vitest |
+
+Trước khi merge: `npm run lint` → `npm test` → `npm run build`.
+
+## Kiến trúc
+
+- `src/schemas/` — Zod `CVData` (single source of truth)
+- `src/data/presets/` — Profile preset JSON
+- `src/lib/` — `extract-json`, `import-cv`, `export-rule`, `draft-storage`
+- `src/features/catalog/` — Gallery
+- `src/features/wizard/` — Wizard 4 bước
+- `src/features/pdf/` — `@react-pdf/renderer` layouts
+
+## Deploy (Vercel)
+
+```bash
+npm run build
+npx vercel --prod
 ```
+
+Framework preset: Vite. Output: `dist`.
+
+## Phase 2 (ngoài MVP)
+
+- Export DOCX
+- PDF preview iframe
+- Validate theo `sections.required` từng preset
