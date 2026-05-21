@@ -20,8 +20,9 @@
   --color-on-dark: #faf9f5;
   --color-on-dark-soft: #a09d96;
   --color-error: #c64545;
-  --font-display: "Cormorant Garamond", "Tiempos Headline", Georgia, serif;
-  --font-body: Inter, system-ui, sans-serif;
+  /* Be Vietnam Pro: đủ dấu tiếng Việt cho headline (Cormorant không có subset VI) */
+  --font-display: "Be Vietnam Pro", Inter, system-ui, sans-serif;
+  --font-body: Inter, "Be Vietnam Pro", system-ui, sans-serif;
   --font-code: "JetBrains Mono", ui-monospace, monospace;
   --rounded-md: 8px;
   --rounded-lg: 12px;

@@ -11,7 +11,7 @@ export const baseStyles = StyleSheet.create({
   page: {
     padding: 40,
     fontSize: 10,
-    fontFamily: "Helvetica",
+    fontFamily: "NotoSans",
     color: pdfColors.body,
   },
   h1: { fontSize: 18, marginBottom: 4, color: pdfColors.ink },

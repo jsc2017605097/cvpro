@@ -41,7 +41,7 @@ export function CodeWindowCard({
           placeholder={placeholder}
           rows={rows}
           className={cn(
-            "font-code w-full resize-y overflow-x-auto rounded-[var(--rounded-md)] border-0 bg-[var(--color-surface-dark-soft)] p-4 text-sm leading-relaxed text-[var(--color-on-dark)] outline-none",
+            "w-full resize-y overflow-x-auto rounded-[var(--rounded-md)] border-0 bg-[var(--color-surface-dark-soft)] p-4 text-sm leading-relaxed text-[var(--color-on-dark)] outline-none [font-family:var(--font-body)]",
             "placeholder:text-[var(--color-on-dark-soft)]",
             "focus:ring-2 focus:ring-[var(--color-primary)] focus:ring-opacity-30"
           )}
