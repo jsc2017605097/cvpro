@@ -19,7 +19,7 @@ export function ModernSinglePdf({ data }: { data: CVData }) {
     <Document>
       <Page size="A4" style={pdfStyles.page}>
         <PdfHeaderBlock data={data} contactInHeader />
-        <View style={pdfStyles.rule} />
+        <View style={pdfStyles.headerRule} />
         <PdfSummarySection data={data} lang={lang} options={sectionOpts} />
         <PdfSkillsSection data={data} lang={lang} options={{ ...sectionOpts, skillMode: "inline" }} />
         <PdfExperienceSection data={data} lang={lang} options={sectionOpts} />

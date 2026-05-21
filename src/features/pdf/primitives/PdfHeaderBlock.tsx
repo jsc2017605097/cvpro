@@ -7,26 +7,32 @@ interface Props {
   contactInHeader?: boolean;
 }
 
-export function PdfHeaderBlock({ data, contactInHeader = true }: Props) {
-  const { personal } = data;
-  const contact = [
+function contactLines(personal: CVData["personal"]): string[] {
+  return [
     personal.email,
     personal.phone,
     personal.location,
     personal.linkedin,
     personal.github,
     personal.website,
-  ]
-    .filter(Boolean)
-    .join(" · ");
+  ].filter(Boolean) as string[];
+}
+
+export function PdfHeaderBlock({ data, contactInHeader = true }: Props) {
+  const { personal } = data;
+  const lines = contactInHeader ? contactLines(personal) : [];
 
   return (
-    <View>
+    <View style={pdfStyles.headerBlock}>
       <Text style={pdfStyles.name}>{personal.fullName}</Text>
-      {personal.title ? <Text style={pdfStyles.title}>{personal.title}</Text> : null}
-      {contactInHeader && contact ? (
-        <Text style={pdfStyles.contact}>{contact}</Text>
+      {personal.title ? (
+        <Text style={pdfStyles.title}>{personal.title}</Text>
       ) : null}
+      {lines.map((line, i) => (
+        <Text key={i} style={pdfStyles.contactLine}>
+          {line}
+        </Text>
+      ))}
     </View>
   );
 }

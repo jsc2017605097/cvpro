@@ -38,13 +38,31 @@ export const pdfStyles = StyleSheet.create({
   name: {
     fontSize: pdfType.name,
     color: pdfColors.ink,
-    marginBottom: 4,
+    marginBottom: 8,
     fontWeight: 700,
+    lineHeight: 1.3,
   },
   title: {
     fontSize: pdfType.title,
     color: pdfColors.muted,
     marginBottom: 6,
+    lineHeight: 1.35,
+  },
+  headerBlock: {
+    flexDirection: "column",
+    marginBottom: 4,
+  },
+  contactLine: {
+    fontSize: pdfType.small,
+    color: pdfColors.muted,
+    lineHeight: 1.35,
+    marginBottom: 3,
+  },
+  headerRule: {
+    height: 1,
+    backgroundColor: pdfColors.hairline,
+    marginTop: 6,
+    marginBottom: 12,
   },
   contact: {
     fontSize: pdfType.small,
