@@ -15,6 +15,22 @@ export function buildExportRule(input: BuildExportRuleInput): string {
     personal: { fullName: isVi ? "[Họ tên]" : "[Full name]" },
   });
 
+  if (layoutId === "compact-two") {
+    sample.personal = {
+      ...sample.personal,
+      avatarUrl: isVi
+        ? "https://example.com/anh-dai-dien.jpg"
+        : "https://example.com/profile-photo.jpg",
+    };
+  }
+
+  const avatarHint =
+    layoutId === "compact-two"
+      ? isVi
+        ? "\n- Layout 2 cột: điền `personal.avatarUrl` bằng URL ảnh JPG/PNG công khai (https://)."
+        : "\n- Two-column layout: set `personal.avatarUrl` to a public https image URL."
+      : "";
+
   const sectionLines = preset.sections
     .map(
       (s) =>
@@ -48,7 +64,7 @@ export function buildExportRule(input: BuildExportRuleInput): string {
     skills,
     "",
     isVi ? "## Quy tắc" : "## Rules",
-    hints,
+    hints + avatarHint,
     outputRule,
     "",
     isVi

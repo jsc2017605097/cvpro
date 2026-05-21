@@ -41,6 +41,25 @@ describe("CVDataSchema", () => {
     expect(result.success).toBe(true);
   });
 
+  it("accepts optional personal.avatarUrl", () => {
+    const result = CVDataSchema.safeParse({
+      ...emptyCVData(),
+      personal: {
+        fullName: "Test",
+        avatarUrl: "https://example.com/photo.jpg",
+      },
+    });
+    expect(result.success).toBe(true);
+  });
+
+  it("rejects invalid avatarUrl", () => {
+    const result = CVDataSchema.safeParse({
+      ...emptyCVData(),
+      personal: { fullName: "Test", avatarUrl: "not-a-url" },
+    });
+    expect(result.success).toBe(false);
+  });
+
   it("rejects invalid email format", () => {
     const bad = {
       ...emptyCVData(),

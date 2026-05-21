@@ -6,6 +6,8 @@ export const pdfColors = {
   muted: "#6c6a64",
   hairline: "#e6dfd8",
   sidebarBg: "#f5f0e8",
+  compactSidebarBg: "#ebe8e4",
+  onInk: "#ffffff",
 };
 
 export const pdfFontFamily = "NotoSans";
@@ -25,6 +27,14 @@ export const pdfSpace = {
   sectionGap: 14,
   itemGap: 8,
   bulletIndent: 10,
+};
+
+const PDF_PAGE_WIDTH_PT = 595.28;
+const PDF_CONTENT_WIDTH_PT = PDF_PAGE_WIDTH_PT - pdfSpace.pagePadding * 2;
+
+export const pdfLayout = {
+  sidebarWidthPt: PDF_CONTENT_WIDTH_PT * 0.35,
+  bodyWidthPt: PDF_CONTENT_WIDTH_PT * 0.65,
 };
 
 export const pdfStyles = StyleSheet.create({
@@ -127,4 +137,126 @@ export const pdfStyles = StyleSheet.create({
   },
   bodyCol: { width: "68%", flexGrow: 1 },
   sidebarBlock: { marginBottom: 10 },
+  contentRow: {
+    flexDirection: "row",
+    alignItems: "flex-start",
+  },
+  compactSidebar: {
+    width: "35%",
+    padding: 12,
+    paddingTop: 0,
+    marginRight: 10,
+    flexGrow: 0,
+  },
+  compactBody: {
+    width: "65%",
+    flexGrow: 1,
+  },
+  compactProfileName: {
+    fontSize: 20,
+    fontWeight: 700,
+    color: pdfColors.ink,
+    lineHeight: 1.25,
+    marginBottom: 4,
+    textAlign: "center",
+  },
+  compactProfileTitle: {
+    fontSize: pdfType.title,
+    color: pdfColors.muted,
+    lineHeight: 1.35,
+    marginBottom: 8,
+    textAlign: "center",
+  },
+  compactAvatar: {
+    width: 68,
+    height: 68,
+    borderRadius: 34,
+    objectFit: "cover",
+    alignSelf: "center",
+    marginBottom: 12,
+  },
+  compactAvatarPlaceholder: {
+    width: 68,
+    height: 68,
+    borderRadius: 34,
+    borderWidth: 1,
+    borderColor: pdfColors.hairline,
+    alignSelf: "center",
+    marginBottom: 12,
+  },
+  compactSectionBar: {
+    backgroundColor: pdfColors.ink,
+    paddingVertical: 5,
+    paddingHorizontal: 8,
+    marginBottom: 8,
+    marginTop: 4,
+  },
+  compactSectionBarText: {
+    fontSize: 8.5,
+    fontWeight: 700,
+    color: pdfColors.onInk,
+  },
+  compactSectionBarTextEn: {
+    letterSpacing: 0.8,
+    textTransform: "uppercase",
+  },
+  timelineSectionRow: {
+    flexDirection: "row",
+    marginBottom: 10,
+  },
+  timelineTrack: {
+    width: 12,
+    alignItems: "center",
+    marginRight: 8,
+    paddingTop: 2,
+  },
+  timelineDot: {
+    width: 5,
+    height: 5,
+    borderRadius: 2.5,
+    backgroundColor: pdfColors.ink,
+  },
+  timelineLine: {
+    width: 1,
+    flexGrow: 1,
+    minHeight: 20,
+    backgroundColor: pdfColors.hairline,
+    marginTop: 3,
+  },
+  timelineBody: {
+    flexGrow: 1,
+    flexShrink: 1,
+  },
+  timelineHeaderRow: {
+    flexDirection: "row",
+    justifyContent: "space-between",
+    alignItems: "flex-start",
+    marginBottom: 3,
+  },
+  timelineTitle: {
+    fontSize: 11,
+    fontWeight: 700,
+    color: pdfColors.ink,
+    flexGrow: 1,
+    maxWidth: "72%",
+  },
+  timelineDate: {
+    fontSize: pdfType.small,
+    color: pdfColors.muted,
+    textAlign: "right",
+  },
+  roleLineEn: {
+    fontSize: 10,
+    fontWeight: 700,
+    color: pdfColors.ink,
+    textTransform: "uppercase",
+    marginBottom: 2,
+  },
+  sidebarSkillBullet: {
+    marginLeft: pdfSpace.bulletIndent,
+    marginBottom: 2,
+    fontSize: 8,
+    color: pdfColors.body,
+    lineHeight: 1.3,
+  },
 });

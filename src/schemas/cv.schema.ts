@@ -11,6 +11,7 @@ export const PersonalSchema = z.object({
   linkedin: optionalUrl,
   github: optionalUrl,
   website: optionalUrl,
+  avatarUrl: optionalUrl,
 });
 
 export const ExperienceItemSchema = z.object({

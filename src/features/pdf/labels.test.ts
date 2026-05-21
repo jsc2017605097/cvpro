@@ -1,5 +1,5 @@
 import { describe, it, expect } from "vitest";
-import { sectionLabel } from "./labels";
+import { sectionLabel, sidebarSummaryLabel } from "./labels";
 
 describe("sectionLabel", () => {
   it("returns Vietnamese labels", () => {
@@ -8,5 +8,9 @@ describe("sectionLabel", () => {
 
   it("returns English labels", () => {
     expect(sectionLabel("summary", "en")).toBe("Summary");
+  });
+
+  it("returns sidebar career objective label", () => {
+    expect(sidebarSummaryLabel("vi")).toBe("Mục tiêu nghề nghiệp");
   });
 });

@@ -1,20 +1,11 @@
 import { Text, View } from "@react-pdf/renderer";
 import type { ExperienceItem } from "@/schemas/cv.schema";
+import { formatDateRange } from "../format-experience";
 import { pdfStyles } from "../tokens";
 
 interface Props {
   items: ExperienceItem[];
   dateOnRight?: boolean;
-}
-
-function formatDateRange(item: ExperienceItem): string {
-  const end = item.endDate
-    ? item.endDate
-    : item.current
-      ? "Present"
-      : "";
-  const range = end ? `${item.startDate} – ${end}` : item.startDate;
-  return item.location ? `${range} · ${item.location}` : range;
 }
 
 export function ExperienceBlock({ items, dateOnRight = false }: Props) {

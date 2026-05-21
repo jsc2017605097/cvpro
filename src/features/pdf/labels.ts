@@ -1,6 +1,7 @@
 export type PdfLanguage = "vi" | "en";
 
 const LABELS = {
+  careerObjective: { vi: "Mục tiêu nghề nghiệp", en: "Career objective" },
   summary: { vi: "Tóm tắt", en: "Summary" },
   skills: { vi: "Kỹ năng", en: "Skills" },
   experience: { vi: "Kinh nghiệm", en: "Experience" },
@@ -15,4 +16,8 @@ export type SectionKey = keyof typeof LABELS;
 
 export function sectionLabel(key: SectionKey, language: PdfLanguage): string {
   return LABELS[key][language];
+}
+
+export function sidebarSummaryLabel(language: PdfLanguage): string {
+  return LABELS.careerObjective[language];
 }
