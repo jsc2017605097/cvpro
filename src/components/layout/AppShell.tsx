@@ -1,8 +1,15 @@
-import { Link } from "react-router-dom";
-import { Button } from "@/components/ui/design/Button";
+import { Link, useNavigate } from "react-router-dom";
+import { cn } from "@/lib/utils";
 import { PageContainer } from "@/components/layout/PageContainer";
 
+const navCtaClass = cn(
+  "inline-flex h-10 items-center justify-center rounded-[var(--rounded-md)] px-5 text-sm font-medium no-underline transition-colors",
+  "bg-[var(--color-primary)] text-[var(--color-on-primary)] active:bg-[var(--color-primary-active)]"
+);
+
 export function AppShell({ children }: { children: React.ReactNode }) {
+  const navigate = useNavigate();
+
   return (
     <div className="flex min-h-screen flex-col bg-[var(--color-canvas)]">
       <header className="h-16 shrink-0 border-b border-[var(--color-hairline)] bg-[var(--color-canvas)]">
@@ -20,11 +27,9 @@ export function AppShell({ children }: { children: React.ReactNode }) {
             >
               Mẫu CV
             </Link>
-            <Link to="/" className="no-underline">
-              <Button variant="primary" type="button">
-                Bắt đầu
-              </Button>
-            </Link>
+            <button type="button" className={navCtaClass} onClick={() => navigate("/")}>
+              Bắt đầu
+            </button>
           </nav>
         </PageContainer>
       </header>

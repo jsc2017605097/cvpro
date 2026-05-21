@@ -38,4 +38,5 @@ export interface LayoutTemplate {
   id: string;
   name: LocalizedText;
   description: LocalizedText;
+  previewImage: string;
 }

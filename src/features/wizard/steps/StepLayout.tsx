@@ -2,7 +2,8 @@ import { LAYOUTS } from "@/data/layouts";
 import type { ProfilePreset } from "@/types/preset";
 import type { WizardDraft } from "@/lib/draft-storage";
 import { Button } from "@/components/ui/design/Button";
-import { cn } from "@/lib/utils";
+import { CategoryTabs } from "@/components/ui/design/CategoryTabs";
+import { LayoutOptionCard } from "../components/LayoutOptionCard";
 
 interface Props {
   draft: WizardDraft;
@@ -22,65 +23,32 @@ export function StepLayout({ draft, preset, onUpdate, onNext }: Props) {
         Chọn bố cục PDF và ngôn ngữ nội dung CV / rule export.
       </p>
 
-      <fieldset className="space-y-3">
-        <legend className="text-sm font-medium text-[var(--color-ink)]">
-          Layout PDF
-        </legend>
+      <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
         {layouts.map((layout) => (
-          <label
+          <LayoutOptionCard
             key={layout.id}
-            className={cn(
-              "flex cursor-pointer gap-3 rounded-[var(--rounded-md)] border p-4 transition-colors",
-              draft.layoutId === layout.id
-                ? "border-[var(--color-primary)] bg-[var(--color-surface-soft)]"
-                : "border-[var(--color-hairline)] bg-[var(--color-canvas)]"
-            )}
-          >
-            <input
-              type="radio"
-              name="layout"
-              value={layout.id}
-              checked={draft.layoutId === layout.id}
-              onChange={() => onUpdate({ layoutId: layout.id })}
-              className="mt-1"
-            />
-            <span>
-              <span className="block font-medium text-[var(--color-ink)]">
-                {layout.name.vi}
-              </span>
-              <span className="mt-1 block text-sm text-[var(--color-body)]">
-                {layout.description.vi}
-              </span>
-            </span>
-          </label>
+            layout={layout}
+            selected={draft.layoutId === layout.id}
+            onSelect={() => onUpdate({ layoutId: layout.id })}
+          />
         ))}
-      </fieldset>
+      </div>
 
       <fieldset className="space-y-2">
         <legend className="text-sm font-medium text-[var(--color-ink)]">
           Ngôn ngữ rule &amp; JSON
         </legend>
-        <div className="flex gap-3">
-          {(["vi", "en"] as const).map((lang) => (
-            <label
-              key={lang}
-              className={cn(
-                "flex cursor-pointer items-center gap-2 rounded-[var(--rounded-md)] border px-4 py-2 text-sm",
-                draft.language === lang
-                  ? "border-[var(--color-primary)] bg-[var(--color-surface-soft)]"
-                  : "border-[var(--color-hairline)]"
-              )}
-            >
-              <input
-                type="radio"
-                name="language"
-                checked={draft.language === lang}
-                onChange={() => onUpdate({ language: lang })}
-              />
-              {lang === "vi" ? "Tiếng Việt" : "English"}
-            </label>
-          ))}
-        </div>
+        <CategoryTabs
+          aria-label="Ngôn ngữ"
+          value={draft.language}
+          onChange={(language) =>
+            onUpdate({ language: language as "vi" | "en" })
+          }
+          options={[
+            { value: "vi", label: "Tiếng Việt" },
+            { value: "en", label: "English" },
+          ]}
+        />
       </fieldset>
 
       <Button type="button" onClick={onNext}>

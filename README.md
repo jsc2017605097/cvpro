@@ -47,7 +47,27 @@ Trước khi merge: `npm run lint` → `npm test` → `npm run build`.
 - `src/lib/` — `extract-json`, `import-cv`, `export-rule`, `draft-storage`
 - `src/features/catalog/` — Gallery
 - `src/features/wizard/` — Wizard 4 bước
-- `src/features/pdf/` — `@react-pdf/renderer` layouts
+- `src/features/pdf/` — tokens, labels VI/EN, primitives, 3 layout PDF
+- `public/fonts/` — Noto Sans TTF (tiếng Việt)
+- `public/thumbnails/` — Preview layout trong wizard
+
+## Layout PDF (Template Pro)
+
+| Layout | Phong cách |
+|--------|------------|
+| `modern-single` | 1 cột, header + rule, section uppercase — trang trọng |
+| `compact-two` | Sidebar cream (liên hệ, skills), thân CV — tech |
+| `minimal-ats` | Phẳng, dates thẳng hàng — ATS |
+
+Nhãn section theo `meta.language` (vi/en). Font PDF: **Noto Sans** (`public/fonts/`).
+
+## QA PDF (manual)
+
+- [ ] `modern-single`: tên lớn, rule dưới header, nhãn **Kinh nghiệm** (không "Experience")
+- [ ] `compact-two`: sidebar `#f5f0e8` khác rõ `modern-single`
+- [ ] `minimal-ats`: flat, không rule trang trí
+- [ ] Ký tự Việt: ă â đ ê ô ơ ư / Ấ Đ Ệ
+- [ ] CV mẫu junior đầy đủ ≤ 2 trang A4
 
 ## Deploy (Vercel)
 

@@ -16,6 +16,24 @@ export function StepPreview({ cvData, layoutId, onBack }: Props) {
 
   return (
     <div className="space-y-6">
+      {layout && (
+        <div className="flex flex-col gap-3 sm:flex-row sm:items-start">
+          <img
+            src={layout.previewImage}
+            alt=""
+            className="w-full max-w-[200px] shrink-0 rounded-[var(--rounded-md)] border border-[var(--color-hairline)] bg-[var(--color-surface-card)] object-cover object-top"
+          />
+          <div>
+            <p className="text-sm font-medium text-[var(--color-ink)]">
+              Layout: {layout.name.vi}
+            </p>
+            <p className="mt-1 text-sm text-[var(--color-body)]">
+              {layout.description.vi}
+            </p>
+          </div>
+        </div>
+      )}
+
       <div className="rounded-[var(--rounded-lg)] border border-[var(--color-hairline)] bg-[var(--color-surface-soft)] p-6">
         <p className="text-sm text-[var(--color-muted)]">Xem trước nội dung</p>
         <h2 className="font-display mt-2 text-2xl text-[var(--color-ink)]">
@@ -33,11 +51,6 @@ export function StepPreview({ cvData, layoutId, onBack }: Props) {
           <p className="mt-4 text-sm text-[var(--color-body)]">
             <span className="font-medium text-[var(--color-ink)]">Kỹ năng: </span>
             {cvData.skills.join(" · ")}
-          </p>
-        )}
-        {layout && (
-          <p className="mt-4 text-xs text-[var(--color-muted)]">
-            Layout PDF: {layout.name.vi}
           </p>
         )}
       </div>

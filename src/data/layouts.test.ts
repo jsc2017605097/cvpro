@@ -9,4 +9,10 @@ describe("layouts", () => {
   it("finds modern-single", () => {
     expect(getLayoutById("modern-single")?.id).toBe("modern-single");
   });
+
+  it("each layout has previewImage", () => {
+    for (const layout of LAYOUTS) {
+      expect(layout.previewImage).toMatch(/^\/thumbnails\/layout-/);
+    }
+  });
 });

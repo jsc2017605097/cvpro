@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import type { ProfilePreset } from "@/types/preset";
 import { FeatureCard } from "@/components/ui/design/FeatureCard";
 import { BadgePill } from "@/components/ui/design/BadgePill";
@@ -12,6 +12,8 @@ const CATEGORY_LABELS: Record<ProfilePreset["category"], string> = {
 };
 
 export function PresetCard({ preset }: { preset: ProfilePreset }) {
+  const navigate = useNavigate();
+
   return (
     <FeatureCard className="flex h-full flex-col">
       <div className="mb-3 flex flex-wrap gap-2">
@@ -29,9 +31,12 @@ export function PresetCard({ preset }: { preset: ProfilePreset }) {
       <p className="mt-2 flex-1 text-sm text-[var(--color-body)]">
         {preset.shortDescription.vi}
       </p>
-      <Link to={`/wizard/${preset.id}`} className="mt-6 block">
-        <Button className="w-full">Dùng mẫu này</Button>
-      </Link>
+      <Button
+        className="mt-6 w-full"
+        onClick={() => navigate(`/wizard/${preset.id}`)}
+      >
+        Dùng mẫu này
+      </Button>
     </FeatureCard>
   );
 }
