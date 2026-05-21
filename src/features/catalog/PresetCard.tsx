@@ -11,8 +11,16 @@ const CATEGORY_LABELS: Record<ProfilePreset["category"], string> = {
   other: "Khác",
 };
 
+function cardTags(preset: ProfilePreset): string[] {
+  const categoryLabel = CATEGORY_LABELS[preset.category].toLowerCase();
+  return preset.tags
+    .filter((tag) => tag.toLowerCase() !== categoryLabel)
+    .slice(0, 2);
+}
+
 export function PresetCard({ preset }: { preset: ProfilePreset }) {
   const navigate = useNavigate();
+  const extraTags = cardTags(preset);
 
   return (
     <FeatureCard className="flex h-full flex-col">
@@ -21,7 +29,7 @@ export function PresetCard({ preset }: { preset: ProfilePreset }) {
         {preset.market === "global" && (
           <BadgePill variant="coral">Global</BadgePill>
         )}
-        {preset.tags.slice(0, 2).map((tag) => (
+        {extraTags.map((tag) => (
           <BadgePill key={tag}>{tag}</BadgePill>
         ))}
       </div>
