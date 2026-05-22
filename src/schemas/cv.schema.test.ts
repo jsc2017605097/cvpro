@@ -129,6 +129,50 @@ describe("CVDataSchema", () => {
     expect(result.success).toBe(false);
   });
 
+  it("accepts awards array", () => {
+    const result = CVDataSchema.safeParse({
+      ...emptyCVData(),
+      personal: { fullName: "Guy Hawkins" },
+      awards: [
+        { title: "Employee of the Month", issuer: "Acme", date: "2017" },
+      ],
+    });
+    expect(result.success).toBe(true);
+  });
+
+  it("rejects award without title", () => {
+    const result = CVDataSchema.safeParse({
+      ...emptyCVData(),
+      personal: { fullName: "Test" },
+      awards: [{ title: "" }],
+    });
+    expect(result.success).toBe(false);
+  });
+
+  it("accepts personal twitter and facebook", () => {
+    const result = CVDataSchema.safeParse({
+      ...emptyCVData(),
+      personal: {
+        fullName: "Test",
+        twitter: "@johnsmith",
+        facebook: "https://facebook.com/my.smith",
+      },
+    });
+    expect(result.success).toBe(true);
+  });
+
+  it("rejects awards over 4 items", () => {
+    const awards = Array.from({ length: 5 }, (_, i) => ({
+      title: `Award ${i}`,
+    }));
+    const result = CVDataSchema.safeParse({
+      ...emptyCVData(),
+      personal: { fullName: "Test" },
+      awards,
+    });
+    expect(result.success).toBe(false);
+  });
+
   it("rejects rated skills array over 12 items", () => {
     const skills = Array.from({ length: 13 }, (_, i) => ({
       name: `Skill${i}`,

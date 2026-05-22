@@ -12,6 +12,13 @@ const LABELS = {
   certifications: { vi: "Chứng chỉ", en: "Certifications" },
   personalInfo: { vi: "Thông tin cá nhân", en: "Personal information" },
   mySelf: { vi: "Mục tiêu", en: "My Self" },
+  awards: { vi: "Giải thưởng", en: "Awards" },
+  contactUpper: { vi: "LIÊN HỆ", en: "CONTACT" },
+  skillsUpper: { vi: "KỸ NĂNG", en: "SKILLS" },
+  awardsUpper: { vi: "GIẢI THƯỞNG", en: "AWARDS" },
+  educationUpper: { vi: "HỌC VẤN", en: "EDUCATION" },
+  experienceUpper: { vi: "KINH NGHIỆM", en: "EXPERIENCE" },
+  certificationUpper: { vi: "CHỨNG CHỈ", en: "CERTIFICATION" },
 } as const;
 
 export type SectionKey = keyof typeof LABELS;

@@ -12,6 +12,8 @@ export const PersonalSchema = z.object({
   github: optionalUrl,
   website: optionalUrl,
   avatarUrl: optionalUrl,
+  twitter: z.string().max(200).optional().or(z.literal("")),
+  facebook: optionalUrl,
 });
 
 export const ExperienceItemSchema = z.object({
@@ -32,6 +34,13 @@ export const EducationItemSchema = z.object({
   endDate: z.string().optional(),
   details: z.array(z.string()).optional(),
 });
+
+export const AwardItemSchema = z.object({
+  title: z.string().min(1),
+  issuer: z.string().optional(),
+  date: z.string().optional(),
+});
+export type AwardItem = z.infer<typeof AwardItemSchema>;
 
 export const ProjectItemSchema = z.object({
   name: z.string().min(1),
@@ -109,6 +118,7 @@ export const CVDataSchema = z.object({
   education: z.array(EducationItemSchema).optional(),
   projects: z.array(ProjectItemSchema).max(5).optional(),
   certifications: z.array(z.string()).optional(),
+  awards: z.array(AwardItemSchema).max(4).optional(),
   languages: z.array(z.string()).optional(),
 });
 

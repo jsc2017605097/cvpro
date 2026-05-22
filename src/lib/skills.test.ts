@@ -1,5 +1,9 @@
 import { describe, it, expect } from "vitest";
-import { normalizeSkills, normalizeToRatedSkills } from "./skills";
+import {
+  flattenSkillsForWebDeveloper,
+  normalizeSkills,
+  normalizeToRatedSkills,
+} from "./skills";
 
 const STAGGER = [90, 85, 80, 75, 70, 65, 60, 55];
 
@@ -61,6 +65,54 @@ describe("normalizeSkills", () => {
 
   it("returns empty for undefined", () => {
     expect(normalizeSkills(undefined, "vi")).toEqual([]);
+  });
+
+  it("returns string array as-is capped", () => {
+    const flat = [
+      "Java",
+      "Spring",
+      "Docker",
+      "K8s",
+      "SQL",
+      "Git",
+      "Linux",
+      "AWS",
+      "Extra",
+    ];
+    expect(flattenSkillsForWebDeveloper(flat, 8)).toEqual([
+      "Java",
+      "Spring",
+      "Docker",
+      "K8s",
+      "SQL",
+      "Git",
+      "Linux",
+      "AWS",
+    ]);
+  });
+
+  it("flattens SkillGroup[]", () => {
+    const groups = [
+      { category: "Backend", items: ["Java", "Spring"] },
+      { category: "DevOps", items: ["Docker"] },
+    ];
+    expect(flattenSkillsForWebDeveloper(groups, 8)).toEqual([
+      "Java",
+      "Spring",
+      "Docker",
+    ]);
+  });
+
+  it("maps SkillRated[] to names only", () => {
+    const rated = [
+      { name: "Java", level: 90 },
+      { name: "React", level: 80 },
+    ];
+    expect(flattenSkillsForWebDeveloper(rated, 8)).toEqual(["Java", "React"]);
+  });
+
+  it("returns empty for undefined skills flatten", () => {
+    expect(flattenSkillsForWebDeveloper(undefined, 8)).toEqual([]);
   });
 
   it("fallback single group for unmatched flat list", () => {

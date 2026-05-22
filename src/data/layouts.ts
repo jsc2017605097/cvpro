@@ -28,6 +28,15 @@ export const LAYOUTS: LayoutTemplate[] = [
     },
     previewImage: "/thumbnails/layout-minimal-ats.svg",
   },
+  {
+    id: "web-developer",
+    name: { vi: "Web Developer — 2 cột", en: "Web Developer — Two column" },
+    description: {
+      vi: "Figma Community — avatar, timeline, awards, footer social; 1 trang A4",
+      en: "Figma Community — avatar, timeline, awards, social footer; one A4 page",
+    },
+    previewImage: "/thumbnails/layout-web-developer.png",
+  },
 ];
 
 export function getLayoutById(id: string): LayoutTemplate | undefined {

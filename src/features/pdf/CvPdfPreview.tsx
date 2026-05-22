@@ -2,6 +2,7 @@ import { useMemo } from "react";
 import { PDFViewer } from "@react-pdf/renderer";
 import type { CVData } from "@/schemas/cv.schema";
 import { clampCvDataForCompactTwoPdf } from "@/lib/compact-two-one-page";
+import { clampCvDataForWebDeveloperPdf } from "@/lib/web-developer-one-page";
 import { CvDocument } from "./CvDocument";
 
 interface Props {
@@ -13,6 +14,9 @@ export function CvPdfPreview({ cvData, layoutId }: Props) {
   const data = useMemo(() => {
     if (layoutId === "compact-two") {
       return clampCvDataForCompactTwoPdf(cvData);
+    }
+    if (layoutId === "web-developer") {
+      return clampCvDataForWebDeveloperPdf(cvData);
     }
     return cvData;
   }, [cvData, layoutId]);
