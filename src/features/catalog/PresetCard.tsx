@@ -27,7 +27,7 @@ export function PresetCard({ preset }: { preset: ProfilePreset }) {
 
   return (
     <FeatureCard className="flex h-full flex-col overflow-hidden border border-transparent p-0 transition-colors hover:border-[var(--color-hairline)]">
-      <PresetCardVisual config={visual} />
+      <PresetCardVisual config={visual} preset={preset} />
       <div className="flex flex-1 flex-col p-[var(--spacing-xl)]">
         <div className="mb-3 flex flex-wrap gap-2">
           <BadgePill>{CATEGORY_LABELS[preset.category]}</BadgePill>

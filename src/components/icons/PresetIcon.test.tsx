@@ -11,8 +11,10 @@ describe("PresetIcon", () => {
     expect(svg).toHaveAttribute("aria-hidden", "true");
   });
 
-  it("applies accent class when accent=true", () => {
-    const { container } = render(<PresetIcon icon="server" accent />);
+  it("applies primary tint for hero", () => {
+    const { container } = render(
+      <PresetIcon icon="server" size="hero" tint="primary" />
+    );
     const wrapper = container.firstElementChild;
     expect(wrapper?.className).toMatch(/color-primary/);
   });

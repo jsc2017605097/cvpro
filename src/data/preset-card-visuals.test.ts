@@ -33,6 +33,7 @@ describe("preset-card-visuals", () => {
     const config = getPresetCardVisual("dev-frontend");
     expect(config.icons).toEqual(["component", "accessibility", "layout"]);
     expect(config.bandVariant).toBe("soft");
+    expect(config.heroTint).toBe("primary");
   });
 
   it("marketing-digital uses cream band", () => {
