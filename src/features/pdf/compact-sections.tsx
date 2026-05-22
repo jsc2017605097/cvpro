@@ -1,48 +1,21 @@
 import { Text, View } from "@react-pdf/renderer";
 import type { CVData } from "@/schemas/cv.schema";
-import { contactLines } from "./contact-lines";
+import { collectHighlightTokens } from "@/lib/highlight-tokens";
+import { normalizeSkills } from "@/lib/skills";
+import { truncateAtWordBoundary } from "@/lib/truncate-text";
 import {
   sectionLabel,
   sidebarSummaryLabel,
   type PdfLanguage,
 } from "./labels";
-import { CertTimelineEntry } from "./primitives/CertTimelineEntry";
-import { EducationTimelineEntry } from "./primitives/EducationTimelineEntry";
-import { ExperienceTimelineEntry } from "./primitives/ExperienceTimelineEntry";
+import { CertEntryCompact } from "./primitives/CertEntryCompact";
+import { EducationEntryCompact } from "./primitives/EducationEntryCompact";
+import { ExperienceEntryCompact } from "./primitives/ExperienceEntryCompact";
 import { PdfSectionBar } from "./primitives/PdfSectionBar";
-import { ProjectTimelineEntry } from "./primitives/ProjectTimelineEntry";
+import { ProjectEntryCompact } from "./primitives/ProjectEntryCompact";
 import { SidebarPanelSection } from "./primitives/SidebarPanelSection";
-import { SkillList } from "./primitives/SkillList";
+import { SkillGroupList } from "./primitives/SkillGroupList";
 import { pdfStyles } from "./tokens";
-
-function ContactLines({ lines }: { lines: string[] }) {
-  return (
-    <>
-      {lines.map((line, i) => (
-        <Text key={i} style={{ ...pdfStyles.mutedLine, marginBottom: 3 }}>
-          {line}
-        </Text>
-      ))}
-    </>
-  );
-}
-
-export function CompactSidebarContact({
-  data,
-  lang,
-}: {
-  data: CVData;
-  lang: PdfLanguage;
-}) {
-  const lines = contactLines(data.personal);
-  if (!lines.length) return null;
-
-  return (
-    <SidebarPanelSection label={sectionLabel("contact", lang)} language={lang}>
-      <ContactLines lines={lines} />
-    </SidebarPanelSection>
-  );
-}
 
 export function CompactSidebarSummary({
   data,
@@ -52,10 +25,11 @@ export function CompactSidebarSummary({
   lang: PdfLanguage;
 }) {
   if (!data.summary) return null;
+  const text = truncateAtWordBoundary(data.summary, 700);
 
   return (
     <SidebarPanelSection label={sidebarSummaryLabel(lang)} language={lang}>
-      <Text style={pdfStyles.bodyText}>{data.summary}</Text>
+      <Text style={pdfStyles.bodyText}>{text}</Text>
     </SidebarPanelSection>
   );
 }
@@ -67,11 +41,12 @@ export function CompactSidebarSkills({
   data: CVData;
   lang: PdfLanguage;
 }) {
-  if (!data.skills?.length) return null;
+  const groups = normalizeSkills(data.skills, lang);
+  if (!groups.length) return null;
 
   return (
     <SidebarPanelSection label={sectionLabel("skills", lang)} language={lang}>
-      <SkillList skills={data.skills} mode="bullets" dense />
+      <SkillGroupList groups={groups} />
     </SidebarPanelSection>
   );
 }
@@ -100,15 +75,16 @@ export function CompactBodyExperienceSection({
   lang: PdfLanguage;
 }) {
   if (!data.experience?.length) return null;
+  const tokens = collectHighlightTokens(data);
 
   return (
     <View style={{ marginBottom: 8 }}>
       <PdfSectionBar label={sectionLabel("experience", lang)} language={lang} />
       {data.experience.map((item, i) => (
-        <ExperienceTimelineEntry
+        <ExperienceEntryCompact
           key={`${item.company}-${i}`}
           item={item}
-          language={lang}
+          tokens={tokens}
           isLast={i === data.experience!.length - 1}
         />
       ))}
@@ -124,14 +100,16 @@ export function CompactBodyEducationSection({
   lang: PdfLanguage;
 }) {
   if (!data.education?.length) return null;
+  const tokens = collectHighlightTokens(data);
 
   return (
     <View style={{ marginBottom: 8 }}>
       <PdfSectionBar label={sectionLabel("education", lang)} language={lang} />
       {data.education.map((item, i) => (
-        <EducationTimelineEntry
+        <EducationEntryCompact
           key={`${item.school}-${i}`}
           item={item}
+          tokens={tokens}
           isLast={i === data.education!.length - 1}
         />
       ))}
@@ -146,16 +124,20 @@ export function CompactBodyProjectsSection({
   data: CVData;
   lang: PdfLanguage;
 }) {
-  if (!data.projects?.length) return null;
+  const projects = data.projects?.slice(0, 4) ?? [];
+  if (!projects.length) return null;
+  const tokens = collectHighlightTokens(data);
 
   return (
     <View style={{ marginBottom: 8 }}>
       <PdfSectionBar label={sectionLabel("projects", lang)} language={lang} />
-      {data.projects.map((item, i) => (
-        <ProjectTimelineEntry
+      {projects.map((item, i) => (
+        <ProjectEntryCompact
           key={`${item.name}-${i}`}
           item={item}
-          isLast={i === data.projects!.length - 1}
+          index={i}
+          tokens={tokens}
+          isLast={i === projects.length - 1}
         />
       ))}
     </View>
@@ -169,7 +151,8 @@ export function CompactBodyCertificationsSection({
   data: CVData;
   lang: PdfLanguage;
 }) {
-  if (!data.certifications?.length) return null;
+  const certs = data.certifications?.slice(0, 4) ?? [];
+  if (!certs.length) return null;
 
   return (
     <View style={{ marginBottom: 8 }}>
@@ -177,13 +160,15 @@ export function CompactBodyCertificationsSection({
         label={sectionLabel("certifications", lang)}
         language={lang}
       />
-      {data.certifications.map((cert, i) => (
-        <CertTimelineEntry
+      {certs.map((cert, i) => (
+        <CertEntryCompact
           key={`${cert}-${i}`}
           label={cert}
-          isLast={i === data.certifications!.length - 1}
+          isLast={i === certs.length - 1}
         />
       ))}
     </View>
   );
 }
+
+export { CompactSidebarContact } from "./primitives/CompactSidebarContact";

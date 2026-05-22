@@ -14,8 +14,8 @@ export const LAYOUTS: LayoutTemplate[] = [
     id: "compact-two",
     name: { vi: "Compact — 2 cột", en: "Compact — Two columns" },
     description: {
-      vi: "Sidebar profile + ảnh, section bar đậm, timeline kinh nghiệm",
-      en: "Profile sidebar with photo, bold section bars, experience timeline",
+      vi: "Sidebar TopCV, kỹ năng nhóm, section teal, mục tiêu ~2 trang A4",
+      en: "TopCV-style sidebar, grouped skills, teal sections, ~2 A4 pages",
     },
     previewImage: "/thumbnails/layout-compact-two.svg",
   },

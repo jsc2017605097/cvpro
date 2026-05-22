@@ -1,5 +1,6 @@
 import { Text, View } from "@react-pdf/renderer";
 import type { CVData } from "@/schemas/cv.schema";
+import { normalizeSkills } from "@/lib/skills";
 import { sectionLabel, type PdfLanguage } from "./labels";
 import { SectionTitle } from "./primitives/SectionTitle";
 import { ExperienceBlock } from "./primitives/ExperienceBlock";
@@ -50,6 +51,7 @@ export function PdfSkillsSection({
 }) {
   if (!data.skills?.length) return null;
   const { showRule = true, plainSectionTitles = false, skillMode = "inline" } = options;
+  const flatSkills = normalizeSkills(data.skills, lang).flatMap((g) => g.items);
   return (
     <View>
       <SectionTitle
@@ -57,7 +59,7 @@ export function PdfSkillsSection({
         showRule={showRule}
         plain={plainSectionTitles}
       />
-      <SkillList skills={data.skills} mode={skillMode} />
+      <SkillList skills={flatSkills} mode={skillMode} />
     </View>
   );
 }

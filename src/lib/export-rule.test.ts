@@ -14,4 +14,16 @@ describe("buildExportRule", () => {
     expect(rule).toContain("CHỈ TRẢ VỀ");
     expect(rule).toContain('"fullName"');
   });
+
+  it("includes compact-two page limits in Vietnamese", () => {
+    const preset = getPresetById("dev-mid-senior")!;
+    const rule = buildExportRule({
+      preset,
+      layoutId: "compact-two",
+      language: "vi",
+    });
+    expect(rule).toContain("Giới hạn layout Compact Two");
+    expect(rule).toContain('"category"');
+    expect(rule).toContain("80–120");
+  });
 });

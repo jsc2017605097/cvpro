@@ -1,6 +1,8 @@
 import { Link } from "react-router-dom";
 import type { CVData } from "@/schemas/cv.schema";
 import { getLayoutById } from "@/data/layouts";
+import { countWords } from "@/lib/truncate-text";
+import { formatSkillsPreview } from "@/lib/skills";
 import { DownloadButton } from "@/features/pdf/DownloadButton";
 import { Button } from "@/components/ui/design/Button";
 import { clearDraft } from "@/lib/draft-storage";
@@ -13,9 +15,26 @@ interface Props {
 
 export function StepPreview({ cvData, layoutId, onBack }: Props) {
   const layout = getLayoutById(layoutId);
+  const warnings: string[] = [];
+
+  if (layoutId === "compact-two") {
+    if (cvData.summary && countWords(cvData.summary) > 120) {
+      warnings.push("Mục tiêu nên ≤ 120 từ để vừa ~2 trang PDF.");
+    }
+    if (cvData.projects && cvData.projects.length > 4) {
+      warnings.push("Nên tối đa 4 dự án với layout Compact.");
+    }
+  }
 
   return (
     <div className="space-y-6">
+      {warnings.length > 0 && (
+        <ul className="list-disc space-y-1 pl-5 text-sm text-[var(--color-muted)]">
+          {warnings.map((w) => (
+            <li key={w}>{w}</li>
+          ))}
+        </ul>
+      )}
       {layout && (
         <div className="flex flex-col gap-3 sm:flex-row sm:items-start">
           <img
@@ -47,10 +66,10 @@ export function StepPreview({ cvData, layoutId, onBack }: Props) {
             {cvData.summary}
           </p>
         )}
-        {cvData.skills && cvData.skills.length > 0 && (
+        {cvData.skills && formatSkillsPreview(cvData.skills) && (
           <p className="mt-4 text-sm text-[var(--color-body)]">
             <span className="font-medium text-[var(--color-ink)]">Kỹ năng: </span>
-            {cvData.skills.join(" · ")}
+            {formatSkillsPreview(cvData.skills)}
           </p>
         )}
       </div>

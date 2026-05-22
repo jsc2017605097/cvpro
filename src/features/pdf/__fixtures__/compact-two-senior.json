@@ -1,0 +1,97 @@
+{
+  "meta": {
+    "language": "vi",
+    "presetId": "dev-mid-senior",
+    "layoutId": "compact-two"
+  },
+  "personal": {
+    "fullName": "Nguyễn Văn A",
+    "title": "Backend / Full-stack Developer",
+    "email": "dev@example.com",
+    "phone": "0900000000",
+    "location": "Hà Nội, Việt Nam",
+    "avatarUrl": "https://example.com/photo.jpg"
+  },
+  "summary": "Software Engineer với hơn 4 năm kinh nghiệm phát triển backend và full-stack trong domain enterprise. Thành thạo Java Spring Boot, Node.js, Docker và PostgreSQL. Tập trung thiết kế API, tối ưu database và triển khai CI/CD.",
+  "skills": [
+    { "category": "Backend", "items": ["Java", "Spring Boot", "Node.js", "TypeScript"] },
+    { "category": "Cơ sở dữ liệu", "items": ["PostgreSQL", "MySQL", "Redis", "MongoDB"] },
+    { "category": "DevOps & Cloud", "items": ["Docker", "Kubernetes", "GitHub Actions", "AWS EC2"] },
+    { "category": "API & Auth", "items": ["REST", "Apache APISIX", "JWT"] }
+  ],
+  "experience": [
+    {
+      "company": "Bell24 Vietnam",
+      "role": "Backend / Full-stack Developer",
+      "location": "Hà Nội",
+      "startDate": "2022-03",
+      "current": true,
+      "highlights": [
+        "Phát triển hệ thống **Spring Boot** và **Node.js** phục vụ hàng nghìn người dùng.",
+        "Giảm latency từ ~900ms xuống dưới 300ms nhờ tối ưu query **PostgreSQL**.",
+        "Migrate module PHP legacy sang kiến trúc service **Node.js**.",
+        "Thiết lập **Docker Compose** giảm thời gian setup dưới 15 phút."
+      ]
+    },
+    {
+      "company": "MobiFone Solution",
+      "role": "Backend Developer",
+      "location": "Hà Nội",
+      "startDate": "2025-05",
+      "current": true,
+      "highlights": [
+        "Thiết kế API microservices cho domain viễn thông.",
+        "Tối ưu logging và monitoring trên **Linux** production."
+      ]
+    },
+    {
+      "company": "Freelance",
+      "role": "Full-stack Developer",
+      "location": "Remote",
+      "startDate": "2021-01",
+      "endDate": "2022-02",
+      "highlights": [
+        "Xây dựng ứng dụng **Vue 3** và **Node.js** với CI/CD **GitHub Actions**."
+      ]
+    }
+  ],
+  "education": [
+    {
+      "school": "Đại học Bách Khoa",
+      "degree": "Cử nhân",
+      "field": "Công nghệ thông tin",
+      "startDate": "2017",
+      "endDate": "2021",
+      "details": ["GPA: 3.3/4.0", "Đồ án: Hệ thống quản lý — **Node.js**, **MongoDB**"]
+    }
+  ],
+  "projects": [
+    {
+      "name": "Internal API Gateway Platform",
+      "techStack": ["Apache APISIX", "JWT"],
+      "description": "Nền tảng API Gateway nội bộ cho authentication và routing.",
+      "highlights": ["Chuẩn hóa authentication giữa các ứng dụng."]
+    },
+    {
+      "name": "Enterprise Data Dashboard",
+      "techStack": ["Vue 3", "PostgreSQL"],
+      "description": "Dashboard quản lý dữ liệu với filter và export.",
+      "highlights": ["Tối ưu query cho dataset lớn."]
+    },
+    {
+      "name": "Containerized Dev Environment",
+      "techStack": ["Docker Compose"],
+      "description": "Môi trường development chuẩn hóa cho team backend."
+    },
+    {
+      "name": "Legacy Modernization",
+      "techStack": ["Node.js"],
+      "description": "Migrate PHP legacy sang Node.js services."
+    }
+  ],
+  "certifications": [
+    "Docker & Kubernetes Fundamentals (2024)",
+    "AWS Cloud Practitioner — Self Learning (2025)"
+  ],
+  "languages": ["Tiếng Việt — Native", "Tiếng Anh — Technical reading"]
+}
