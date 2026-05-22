@@ -1,4 +1,5 @@
 import { describe, it, expect } from "vitest";
+import type { SkillGroup } from "./cv.schema";
 import { CVDataSchema, emptyCVData } from "./cv.schema";
 
 describe("CVDataSchema", () => {
@@ -66,6 +67,34 @@ describe("CVDataSchema", () => {
       personal: { fullName: "Test", email: "not-an-email" },
     };
     const result = CVDataSchema.safeParse(bad);
+    expect(result.success).toBe(false);
+  });
+
+  it("accepts skills as SkillGroup[]", () => {
+    const groups: SkillGroup[] = [
+      { category: "Backend", items: ["Java", "Spring Boot"] },
+    ];
+    const result = CVDataSchema.safeParse({
+      ...emptyCVData(),
+      skills: groups,
+    });
+    expect(result.success).toBe(true);
+  });
+
+  it("rejects SkillGroup with empty items", () => {
+    const result = CVDataSchema.safeParse({
+      ...emptyCVData(),
+      skills: [{ category: "Backend", items: [] }],
+    });
+    expect(result.success).toBe(false);
+  });
+
+  it("rejects flat skills array over 24 items", () => {
+    const skills = Array.from({ length: 25 }, (_, i) => `Skill ${i + 1}`);
+    const result = CVDataSchema.safeParse({
+      ...emptyCVData(),
+      skills,
+    });
     expect(result.success).toBe(false);
   });
 });
