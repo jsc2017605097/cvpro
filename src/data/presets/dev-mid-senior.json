@@ -11,7 +11,7 @@
   "category": "it",
   "defaultLanguage": "vi",
   "experienceLevel": "senior",
-  "recommendedLayouts": ["modern-single", "compact-two"],
+  "recommendedLayouts": ["modern-single", "compact-two", "web-developer"],
   "sections": [
     {
       "id": "summary",

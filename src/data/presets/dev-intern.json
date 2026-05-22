@@ -11,7 +11,7 @@
   "category": "it",
   "defaultLanguage": "vi",
   "experienceLevel": "intern",
-  "recommendedLayouts": ["modern-single", "minimal-ats"],
+  "recommendedLayouts": ["modern-single", "minimal-ats", "web-developer"],
   "sections": [
     {
       "id": "summary",

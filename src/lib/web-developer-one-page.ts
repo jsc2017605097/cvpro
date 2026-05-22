@@ -6,11 +6,11 @@ import type {
 import { truncateAtWordBoundary } from "./truncate-text";
 
 export const WEB_DEVELOPER_ONE_PAGE = {
-  summaryMaxWords: 55,
-  summaryMaxChars: 320,
+  summaryMaxWords: 45,
+  summaryMaxChars: 240,
   experienceMaxJobs: 3,
   experienceMaxBullets: 3,
-  experienceBulletMaxChars: 120,
+  experienceBulletMaxChars: 95,
   educationMax: 2,
   educationDetailsMax: 3,
   educationDetailMaxChars: 90,

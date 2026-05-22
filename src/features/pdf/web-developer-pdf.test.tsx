@@ -4,6 +4,7 @@ import { describe, it, expect, beforeAll } from "vitest";
 import { Font, renderToBuffer } from "@react-pdf/renderer";
 import { WebDeveloperPdf } from "./layouts/WebDeveloper";
 import fixture from "./__fixtures__/web-developer-golden.json";
+import fixtureCuong from "./__fixtures__/web-developer-cuong.json";
 import { CVDataSchema } from "@/schemas/cv.schema";
 
 const fontsDir = path.resolve(
@@ -21,10 +22,34 @@ beforeAll(() => {
   });
 });
 
+function countPdfPages(buf: Buffer): number {
+  const raw = buf.toString("latin1");
+  return (raw.match(/\/Type\s*\/Page\b/g) ?? []).length;
+}
+
 describe("WebDeveloperPdf", () => {
   it("renders web-developer layout", async () => {
     const data = CVDataSchema.parse(fixture);
     const buf = await renderToBuffer(<WebDeveloperPdf data={data} />);
     expect(buf.length).toBeGreaterThan(1000);
+  });
+
+  it("renders exactly one page (no blank leading page)", async () => {
+    const data = CVDataSchema.parse(fixture);
+    const buf = await renderToBuffer(<WebDeveloperPdf data={data} />);
+    expect(countPdfPages(buf)).toBe(1);
+  });
+
+  it("renders user import (Cuong) as single page", async () => {
+    const data = CVDataSchema.parse(fixtureCuong);
+    const buf = await renderToBuffer(<WebDeveloperPdf data={data} />);
+    expect(countPdfPages(buf)).toBe(1);
+  });
+
+  it("Cuong without remote avatar is single page", async () => {
+    const raw = { ...fixtureCuong, personal: { ...fixtureCuong.personal, avatarUrl: undefined } };
+    const data = CVDataSchema.parse(raw);
+    const buf = await renderToBuffer(<WebDeveloperPdf data={data} />);
+    expect(countPdfPages(buf)).toBe(1);
   });
 });

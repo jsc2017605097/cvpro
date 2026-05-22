@@ -11,7 +11,7 @@
   "category": "it",
   "defaultLanguage": "en",
   "experienceLevel": "mid",
-  "recommendedLayouts": ["compact-two", "minimal-ats"],
+  "recommendedLayouts": ["compact-two", "minimal-ats", "web-developer"],
   "sections": [
     {
       "id": "summary",

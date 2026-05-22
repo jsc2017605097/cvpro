@@ -50,10 +50,15 @@ export const pdfLayout = {
   ofspaceMainWidthPt: PDF_CONTENT_WIDTH_PT * 0.62,
   ofspaceRailWidthPt: PDF_CONTENT_WIDTH_PT * 0.38,
   ofspaceSkillBarWidthPt: 120,
-  webDevInnerWidthPt: 545.28,
-  webDevLeftWidthPt: 545.28 * 0.33,
-  webDevRightWidthPt: 545.28 * 0.67,
-  webDevInnerMarginPt: 25,
+  webDevPageWidthPt: PDF_PAGE_WIDTH_PT,
+  /** Card body padding 14×2 + gap 10 — full bleed, không margin hồng. */
+  webDevBodyPaddingPt: 14,
+  webDevContentWidthPt:
+    PDF_PAGE_WIDTH_PT - 14 * 2,
+  webDevColumnGapPt: 10,
+  webDevLeftWidthPt: (PDF_PAGE_WIDTH_PT - 14 * 2 - 10) * 0.33,
+  webDevRightWidthPt: (PDF_PAGE_WIDTH_PT - 14 * 2 - 10) * 0.67,
+  webDevInnerMarginPt: 0,
   webDevAvatarSizePt: 99,
 };
 
@@ -540,41 +545,44 @@ export const pdfStyles = StyleSheet.create({
     fontFamily: pdfFontFamily,
     fontSize: 9,
     color: pdfColors.webDevInk,
+    backgroundColor: pdfColors.webDevPageInner,
   },
-  webDevBandTop: {
-    height: 40,
+  webDevCard: {
+    backgroundColor: pdfColors.webDevPageInner,
+    width: "100%",
+    minHeight: "100%",
+  },
+  webDevBandTopStrip: {
+    height: 28,
     backgroundColor: pdfColors.webDevBandTop,
   },
-  webDevBandBottom: {
-    height: 40,
-    backgroundColor: pdfColors.webDevBandBottom,
-  },
-  webDevInner: {
-    padding: pdfLayout.webDevInnerMarginPt,
-    backgroundColor: pdfColors.webDevPageInner,
-    flexGrow: 1,
+  webDevCardBody: {
+    paddingHorizontal: pdfLayout.webDevBodyPaddingPt,
+    paddingTop: 10,
+    paddingBottom: 10,
   },
   webDevContentRow: {
     flexDirection: "row",
     alignItems: "flex-start",
-    flexGrow: 1,
+    width: pdfLayout.webDevContentWidthPt,
+    gap: pdfLayout.webDevColumnGapPt,
   },
   webDevLeftColumn: {
     width: pdfLayout.webDevLeftWidthPt,
-    paddingRight: 12,
+    flexGrow: 0,
     flexShrink: 0,
   },
   webDevRightColumn: {
     width: pdfLayout.webDevRightWidthPt,
-    flexGrow: 1,
-    flexShrink: 1,
+    flexGrow: 0,
+    flexShrink: 0,
   },
   webDevName: {
-    fontSize: 30,
+    fontSize: 22,
     fontWeight: 700,
     color: pdfColors.webDevInk,
-    marginBottom: 4,
-    lineHeight: 1.2,
+    marginBottom: 3,
+    lineHeight: 1.15,
   },
   webDevTitle: {
     fontSize: 15,
@@ -585,20 +593,20 @@ export const pdfStyles = StyleSheet.create({
   webDevSummary: {
     fontSize: 8,
     color: pdfColors.webDevInk,
-    lineHeight: 1.5,
+    lineHeight: 1.35,
     textAlign: "justify",
-    marginBottom: 14,
+    marginBottom: 8,
   },
   webDevAvatar: {
-    width: pdfLayout.webDevAvatarSizePt,
-    height: pdfLayout.webDevAvatarSizePt,
+    width: 72,
+    height: 72,
     objectFit: "cover",
     alignSelf: "center",
-    marginBottom: 12,
+    marginBottom: 8,
   },
   webDevAvatarPlaceholder: {
-    width: pdfLayout.webDevAvatarSizePt,
-    height: pdfLayout.webDevAvatarSizePt,
+    width: 72,
+    height: 72,
     backgroundColor: pdfColors.webDevBandTop,
     alignItems: "center",
     justifyContent: "center",
@@ -614,13 +622,22 @@ export const pdfStyles = StyleSheet.create({
   webDevSectionHeaderRow: {
     flexDirection: "row",
     alignItems: "center",
-    marginTop: 8,
-    marginBottom: 4,
+    marginTop: 5,
+    marginBottom: 3,
   },
-  webDevSectionIcon: {
-    fontSize: 10,
+  webDevSectionIconBadge: {
+    width: 12,
+    height: 12,
+    borderRadius: 6,
+    backgroundColor: pdfColors.webDevInk,
+    alignItems: "center",
+    justifyContent: "center",
     marginRight: 6,
-    color: pdfColors.webDevInk,
+  },
+  webDevSectionIconLetter: {
+    fontSize: 7,
+    fontWeight: 700,
+    color: pdfColors.webDevPageInner,
   },
   webDevSectionTitle: {
     fontSize: 11,
@@ -631,21 +648,30 @@ export const pdfStyles = StyleSheet.create({
   },
   webDevHr: {
     height: 1,
+    width: "100%",
     backgroundColor: pdfColors.webDevInk,
-    marginBottom: 8,
+    marginBottom: 5,
   },
   webDevContactRow: {
     flexDirection: "row",
     alignItems: "center",
-    marginBottom: 6,
-    paddingBottom: 4,
-    borderBottomWidth: 1,
+    marginBottom: 5,
+    paddingBottom: 3,
+    borderBottomWidth: 0.5,
     borderBottomColor: pdfColors.webDevInk,
   },
-  webDevContactIcon: {
-    fontSize: 9,
+  webDevContactIconBadge: {
     width: 14,
-    color: pdfColors.webDevInk,
+    height: 14,
+    borderRadius: 7,
+    backgroundColor: pdfColors.webDevInk,
+    alignItems: "center",
+    justifyContent: "center",
+  },
+  webDevContactIconLetter: {
+    fontSize: 8,
+    fontWeight: 700,
+    color: pdfColors.webDevPageInner,
   },
   webDevContactDivider: {
     width: 1,
@@ -657,7 +683,7 @@ export const pdfStyles = StyleSheet.create({
     fontSize: 9,
     color: pdfColors.webDevInk,
     opacity: 0.8,
-    flexGrow: 1,
+    flex: 1,
   },
   webDevSkillCol: {
     width: "48%",
@@ -685,7 +711,7 @@ export const pdfStyles = StyleSheet.create({
     marginBottom: 8,
   },
   webDevTimelineBlock: {
-    marginBottom: 10,
+    marginBottom: 6,
   },
   webDevTimelineEntryTitle: {
     fontSize: 11,
@@ -704,7 +730,7 @@ export const pdfStyles = StyleSheet.create({
     color: pdfColors.webDevInk,
     lineHeight: 1.4,
     marginBottom: 3,
-    marginLeft: 10,
+    flex: 1,
   },
   webDevTimelineDot: {
     width: 4,
@@ -727,8 +753,8 @@ export const pdfStyles = StyleSheet.create({
   webDevFooterRow: {
     flexDirection: "row",
     justifyContent: "space-between",
-    marginTop: 12,
-    paddingTop: 8,
+    marginTop: 6,
+    paddingTop: 6,
     borderTopWidth: 1,
     borderTopColor: pdfColors.webDevInk,
   },
@@ -736,10 +762,19 @@ export const pdfStyles = StyleSheet.create({
     alignItems: "center",
     maxWidth: "22%",
   },
-  webDevFooterIcon: {
-    fontSize: 12,
+  webDevFooterIconBadge: {
+    width: 18,
+    height: 18,
+    borderRadius: 9,
+    backgroundColor: pdfColors.webDevInk,
+    alignItems: "center",
+    justifyContent: "center",
     marginBottom: 4,
-    color: pdfColors.webDevInk,
+  },
+  webDevFooterIconLetter: {
+    fontSize: 8,
+    fontWeight: 700,
+    color: pdfColors.webDevPageInner,
   },
   webDevFooterText: {
     fontSize: 8,

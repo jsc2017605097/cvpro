@@ -15,13 +15,14 @@ import { HighlightText } from "./primitives/HighlightText";
 import { sectionLabel, type PdfLanguage } from "./labels";
 import { pdfColors, pdfStyles } from "./tokens";
 
-const SECTION_ICONS: Record<string, string> = {
-  contact: "☎",
-  skills: "⚙",
-  awards: "★",
-  education: "🎓",
-  experience: "💼",
-  cert: "📜",
+/** NotoSans không render emoji — dùng ký tự ASCII (giống icon Figma). */
+const SECTION_ICON_LABELS: Record<string, string> = {
+  contact: "C",
+  skills: "S",
+  awards: "A",
+  education: "E",
+  experience: "X",
+  cert: "F",
 };
 
 function initials(name: string): string {
@@ -31,6 +32,11 @@ function initials(name: string): string {
     .slice(0, 2)
     .map((p) => p[0]?.toUpperCase() ?? "")
     .join("");
+}
+
+/** PDF renderer không fetch URL http(s) ổn định — chỉ embed data: URI. */
+function pdfAvatarSrc(url?: string): string | undefined {
+  return url?.startsWith("data:") ? url : undefined;
 }
 
 function WebDevSectionHeader({
@@ -43,9 +49,11 @@ function WebDevSectionHeader({
   return (
     <View>
       <View style={pdfStyles.webDevSectionHeaderRow}>
-        <Text style={pdfStyles.webDevSectionIcon}>
-          {SECTION_ICONS[iconKey] ?? "•"}
-        </Text>
+        <View style={pdfStyles.webDevSectionIconBadge}>
+          <Text style={pdfStyles.webDevSectionIconLetter}>
+            {SECTION_ICON_LABELS[iconKey] ?? "•"}
+          </Text>
+        </View>
         <Text style={pdfStyles.webDevSectionTitle}>{title}</Text>
       </View>
       <View style={pdfStyles.webDevHr} />
@@ -66,8 +74,11 @@ function WebDevProfileBlock({
       {personal.title ? (
         <Text style={pdfStyles.webDevTitle}>{personal.title}</Text>
       ) : null}
-      {personal.avatarUrl ? (
-        <Image src={personal.avatarUrl} style={pdfStyles.webDevAvatar} />
+      {pdfAvatarSrc(personal.avatarUrl) ? (
+        <Image
+          src={pdfAvatarSrc(personal.avatarUrl)!}
+          style={pdfStyles.webDevAvatar}
+        />
       ) : (
         <View style={pdfStyles.webDevAvatarPlaceholder}>
           <Text style={pdfStyles.webDevAvatarInitials}>
@@ -80,19 +91,33 @@ function WebDevProfileBlock({
   );
 }
 
+const CONTACT_ICON: Record<string, string> = {
+  location: "L",
+  phone: "P",
+  email: "E",
+  web: "W",
+};
+
 function WebDevContactRows({ personal }: { personal: Personal }) {
-  const rows: { icon: string; value: string }[] = [
-    { icon: "⌂", value: personal.location ?? "" },
-    { icon: "☎", value: personal.phone ?? "" },
-    { icon: "✉", value: personal.email ?? "" },
-    { icon: "🔗", value: personal.website ?? personal.github ?? "" },
+  const rows: { kind: keyof typeof CONTACT_ICON; value: string }[] = [
+    { kind: "location", value: personal.location ?? "" },
+    { kind: "phone", value: personal.phone ?? "" },
+    { kind: "email", value: personal.email ?? "" },
+    {
+      kind: "web",
+      value: personal.website ?? personal.github ?? "",
+    },
   ].filter((r) => r.value.trim());
 
   return (
     <View style={{ marginBottom: 10 }}>
       {rows.map((row) => (
-        <View key={row.icon + row.value} style={pdfStyles.webDevContactRow}>
-          <Text style={pdfStyles.webDevContactIcon}>{row.icon}</Text>
+        <View key={row.kind + row.value} style={pdfStyles.webDevContactRow}>
+          <View style={pdfStyles.webDevContactIconBadge}>
+            <Text style={pdfStyles.webDevContactIconLetter}>
+              {CONTACT_ICON[row.kind]}
+            </Text>
+          </View>
           <View style={pdfStyles.webDevContactDivider} />
           <Text style={pdfStyles.webDevContactText}>{row.value}</Text>
         </View>
@@ -216,9 +241,9 @@ function shortenLink(value: string): string {
 export function WebDevFooterBar({ personal }: { personal: Personal }) {
   const slots: { icon: string; label: string; value?: string }[] = [
     { icon: "in", label: "linkedin", value: personal.linkedin },
-    { icon: "𝕏", label: "twitter", value: personal.twitter },
+    { icon: "X", label: "twitter", value: personal.twitter },
     { icon: "f", label: "facebook", value: personal.facebook },
-    { icon: "✉", label: "email", value: personal.email },
+    { icon: "E", label: "email", value: personal.email },
   ].filter((s) => s.value?.trim());
 
   if (!slots.length) return null;
@@ -227,7 +252,9 @@ export function WebDevFooterBar({ personal }: { personal: Personal }) {
     <View style={pdfStyles.webDevFooterRow}>
       {slots.map((s) => (
         <View key={s.label} style={pdfStyles.webDevFooterSlot}>
-          <Text style={pdfStyles.webDevFooterIcon}>{s.icon}</Text>
+          <View style={pdfStyles.webDevFooterIconBadge}>
+            <Text style={pdfStyles.webDevFooterIconLetter}>{s.icon}</Text>
+          </View>
           <Text style={pdfStyles.webDevFooterText}>
             {shortenLink(s.value!)}
           </Text>
@@ -245,29 +272,33 @@ export function WebDevLeftColumn({ data, lang }: { data: CVData; lang: PdfLangua
 
   return (
     <View style={pdfStyles.webDevLeftColumn}>
-      <WebDevProfileBlock personal={data.personal} summary={data.summary} />
-      <WebDevSectionHeader
-        title={sectionLabel("contactUpper", lang)}
-        iconKey="contact"
-      />
-      <WebDevContactRows personal={data.personal} />
+      <View wrap>
+        <WebDevProfileBlock personal={data.personal} summary={data.summary} />
+      </View>
+      <View wrap>
+        <WebDevSectionHeader
+          title={sectionLabel("contactUpper", lang)}
+          iconKey="contact"
+        />
+        <WebDevContactRows personal={data.personal} />
+      </View>
       {skills.length > 0 ? (
-        <>
+        <View wrap>
           <WebDevSectionHeader
             title={sectionLabel("skillsUpper", lang)}
             iconKey="skills"
           />
           <WebDevSkillsTwoCol skills={skills} />
-        </>
+        </View>
       ) : null}
       {data.awards?.length ? (
-        <>
+        <View wrap>
           <WebDevSectionHeader
             title={sectionLabel("awardsUpper", lang)}
             iconKey="awards"
           />
           <WebDevAwardList awards={data.awards} />
-        </>
+        </View>
       ) : null}
     </View>
   );
@@ -279,7 +310,7 @@ export function WebDevRightColumn({ data, lang }: { data: CVData; lang: PdfLangu
   return (
     <View style={pdfStyles.webDevRightColumn}>
       {data.education?.length ? (
-        <>
+        <View wrap>
           <WebDevSectionHeader
             title={sectionLabel("educationUpper", lang)}
             iconKey="education"
@@ -287,10 +318,10 @@ export function WebDevRightColumn({ data, lang }: { data: CVData; lang: PdfLangu
           {data.education.map((e, i) => (
             <WebDevEducationEntry key={i} item={e} />
           ))}
-        </>
+        </View>
       ) : null}
       {data.experience?.length ? (
-        <>
+        <View wrap>
           <WebDevSectionHeader
             title={sectionLabel("experienceUpper", lang)}
             iconKey="experience"
@@ -298,10 +329,10 @@ export function WebDevRightColumn({ data, lang }: { data: CVData; lang: PdfLangu
           {data.experience.map((job, i) => (
             <WebDevExperienceEntry key={i} job={job} tokens={tokens} />
           ))}
-        </>
+        </View>
       ) : null}
       {data.certifications?.length ? (
-        <>
+        <View wrap>
           <WebDevSectionHeader
             title={sectionLabel("certificationUpper", lang)}
             iconKey="cert"
@@ -309,7 +340,7 @@ export function WebDevRightColumn({ data, lang }: { data: CVData; lang: PdfLangu
           {data.certifications.map((c, i) => (
             <WebDevCertEntry key={i} raw={c} />
           ))}
-        </>
+        </View>
       ) : null}
     </View>
   );
@@ -321,10 +352,9 @@ export function WebDevPageFrame({
   children: ReactNode;
 }) {
   return (
-    <View style={{ flexGrow: 1, backgroundColor: pdfColors.webDevBandBottom }}>
-      <View style={pdfStyles.webDevBandTop} />
-      <View style={pdfStyles.webDevInner}>{children}</View>
-      <View style={pdfStyles.webDevBandBottom} />
+    <View style={pdfStyles.webDevCard}>
+      <View style={pdfStyles.webDevBandTopStrip} />
+      <View style={pdfStyles.webDevCardBody}>{children}</View>
     </View>
   );
 }
