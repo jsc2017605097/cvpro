@@ -233,6 +233,28 @@ export function normalizeSkills(
       ];
 }
 
+export function flattenSkillsForWebDeveloper(
+  skills: CVData["skills"],
+  max = 8
+): string[] {
+  if (!skills?.length) return [];
+  if (isSkillRatedArray(skills)) {
+    return skills
+      .map((s) => s.name.trim())
+      .filter(Boolean)
+      .slice(0, max);
+  }
+  if (isSkillGroupArray(skills)) {
+    const flat: string[] = [];
+    for (const g of skills) flat.push(...g.items);
+    return [...new Set(flat.map((s) => s.trim()).filter(Boolean))].slice(0, max);
+  }
+  return (skills as string[])
+    .map((s) => s.trim())
+    .filter(Boolean)
+    .slice(0, max);
+}
+
 export function formatSkillsPreview(skills: CVData["skills"]): string {
   if (!skills?.length) return "";
   if (isSkillRatedArray(skills)) {

@@ -2,8 +2,12 @@ import { Link } from "react-router-dom";
 import type { CVData } from "@/schemas/cv.schema";
 import { getLayoutById } from "@/data/layouts";
 import { COMPACT_TWO_ONE_PAGE } from "@/lib/compact-two-one-page";
+import { WEB_DEVELOPER_ONE_PAGE } from "@/lib/web-developer-one-page";
 import { countWords } from "@/lib/truncate-text";
-import { normalizeToRatedSkills } from "@/lib/skills";
+import {
+  flattenSkillsForWebDeveloper,
+  normalizeToRatedSkills,
+} from "@/lib/skills";
 import { isSkillRatedArray } from "@/schemas/cv.schema";
 import { CvPdfPreview } from "@/features/pdf/CvPdfPreview";
 import { DownloadButton } from "@/features/pdf/DownloadButton";
@@ -76,6 +80,40 @@ export function StepPreview({ cvData, layoutId, onBack }: Props) {
       )
     ) {
       warnings.push("Gợi ý: gửi skills kèm level (40–100).");
+    }
+  }
+
+  if (layoutId === "web-developer") {
+    const W = WEB_DEVELOPER_ONE_PAGE;
+    warnings.push(
+      "Layout Web Developer chỉ đẹp trên **1 trang A4** — PDF tự cắt nếu quá dài."
+    );
+    if (cvData.summary && countWords(cvData.summary) > W.summaryMaxWords) {
+      warnings.push(`Mục tiêu nên ≤ ${W.summaryMaxWords} từ.`);
+    }
+    if (cvData.experience && cvData.experience.length > W.experienceMaxJobs) {
+      warnings.push(`Nên tối đa ${W.experienceMaxJobs} công ty.`);
+    }
+    if (!cvData.personal.avatarUrl) {
+      warnings.push("Nên có ảnh đại diện (`avatarUrl`) cho layout này.");
+    }
+    const skillCount = flattenSkillsForWebDeveloper(cvData.skills, W.skillsMax)
+      .length;
+    if (
+      cvData.skills?.length &&
+      skillCount >= W.skillsMax &&
+      (cvData.skills as unknown[]).length > W.skillsMax
+    ) {
+      warnings.push(`Chỉ hiển thị ${W.skillsMax} kỹ năng trên PDF.`);
+    }
+    const hasFooter = [
+      cvData.personal.linkedin,
+      cvData.personal.twitter,
+      cvData.personal.facebook,
+      cvData.personal.email,
+    ].some((v) => v?.trim());
+    if (!hasFooter) {
+      warnings.push("Footer: nên có ít nhất linkedin hoặc email.");
     }
   }
 

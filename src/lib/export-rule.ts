@@ -1,6 +1,7 @@
 import type { ProfilePreset } from "@/types/preset";
 import { emptyCVData } from "@/schemas/cv.schema";
 import { compactTwoOnePageLimitsBlock } from "./compact-two-one-page";
+import { webDeveloperOnePageLimitsBlock } from "./web-developer-one-page";
 
 interface BuildExportRuleInput {
   preset: ProfilePreset;
@@ -77,6 +78,79 @@ export function buildExportRule(input: BuildExportRuleInput): string {
     sample.languages = ["Tiếng Việt — Native", "English — Technical"];
   }
 
+  if (layoutId === "web-developer") {
+    sample.personal = {
+      ...sample.personal,
+      title: isVi ? "Web Developer" : "Web Developer",
+      email: "j.smith@example.com",
+      phone: "(000) 954-987-2679",
+      location: isVi ? "134 Rightward Way" : "134 Rightward Way",
+      website: "https://www.webb.com/mycv/",
+      avatarUrl: "https://i.pravatar.cc/150?img=11",
+      linkedin: "https://linkedin.com/in/johndoe",
+      twitter: "@johnsmith",
+      facebook: "https://facebook.com/my.smith",
+    };
+    sample.summary = isVi
+      ? "Web Developer 8+ năm UI/UX và eCommerce; tối ưu workflow và hiệu năng."
+      : "Web Developer 8+ years in UI/UX and eCommerce; optimizes workflow and performance.";
+    sample.skills = [
+      "HTML/Java",
+      "WordPress",
+      "Project Scheduling",
+      "Microsoft Project",
+      "Dreamweaver",
+      "Photoshop",
+      "Communication",
+    ];
+    sample.experience = [
+      {
+        company: "Claredon Smith",
+        role: "Web Developer",
+        location: "Los Angeles, CA",
+        startDate: "2015-01",
+        current: true,
+        highlights: [
+          "Manage accounts worth $4.7M annual sales.",
+          "Trained 3 new account managers.",
+          "Increased volume 150% via customer service initiative.",
+        ],
+      },
+      {
+        company: "Didier Sachs",
+        role: "Junior Developer",
+        location: "Los Santos, CA",
+        startDate: "2008-01",
+        endDate: "2011-12",
+        highlights: [
+          "Networked with clients; revenue +47% in 5 months.",
+          "Employee of the Month three times.",
+        ],
+      },
+    ];
+    sample.education = [
+      {
+        school: "University",
+        degree: "Master of Computer Science",
+        details: ["Graduated Summa Cum Laude.", "Student PM association."],
+      },
+      {
+        school: "University",
+        degree: "Bachelor of Computer Science",
+        details: ["Managed conference for 50+ professionals."],
+      },
+    ];
+    sample.certifications = [
+      "PMP — Project Management Institute (2010-05)",
+      "CAPM — Project Management Institute (2007-11)",
+      "PRINCE2 Foundation (2014-04)",
+    ];
+    sample.awards = [
+      { title: "Outstanding Achievement Award", issuer: "Claredon Smith", date: "2017" },
+      { title: "Employee of the Month", issuer: "Didier Sachs", date: "December 2009" },
+    ];
+  }
+
   const avatarHint = "";
 
   const sectionLines = preset.sections
@@ -115,7 +189,9 @@ export function buildExportRule(input: BuildExportRuleInput): string {
     hints + avatarHint,
     layoutId === "compact-two"
       ? ["", compactTwoOnePageLimitsBlock(language)].join("\n")
-      : "",
+      : layoutId === "web-developer"
+        ? ["", webDeveloperOnePageLimitsBlock(language)].join("\n")
+        : "",
     outputRule,
     "",
     isVi

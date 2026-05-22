@@ -30,4 +30,18 @@ describe("buildExportRule", () => {
     expect(rule).toContain("Mỗi section chỉ làm MỘT việc");
     expect(rule).toContain("Checklist trước khi trả JSON");
   });
+
+  it("includes web-developer page limits and awards in Vietnamese", () => {
+    const preset = getPresetById("dev-mid-senior")!;
+    const rule = buildExportRule({
+      preset,
+      layoutId: "web-developer",
+      language: "vi",
+    });
+    expect(rule).toContain("web-developer");
+    expect(rule).toContain("1 TRANG A4");
+    expect(rule).toContain('"awards"');
+    expect(rule).toContain("avatarUrl");
+    expect(rule).not.toContain('"level"');
+  });
 });

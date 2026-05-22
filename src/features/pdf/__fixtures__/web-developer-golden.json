@@ -1,0 +1,100 @@
+{
+  "meta": {
+    "language": "en",
+    "presetId": "dev-mid-senior",
+    "layoutId": "web-developer"
+  },
+  "personal": {
+    "fullName": "Guy Hawkins",
+    "title": "Web Developer",
+    "email": "j.smith@example.com",
+    "phone": "(000) 954-987-2679",
+    "location": "134 Rightward Way",
+    "website": "https://www.webb.com/mycv/",
+    "avatarUrl": "https://i.pravatar.cc/150?img=11",
+    "linkedin": "https://linkedin.com/in/johndoe",
+    "twitter": "@johnsmithutw",
+    "facebook": "https://facebook.com/my.smith"
+  },
+  "summary": "Web Developer with 8 years of experience designing user interfaces, testing, debugging, and training staff in eCommerce technologies.",
+  "skills": [
+    "HTML/Java/C+",
+    "WordPress",
+    "Project Scheduling",
+    "Microsoft Project",
+    "Dream Weaver",
+    "Photoshop & Illustration",
+    "Communication Skills"
+  ],
+  "experience": [
+    {
+      "company": "Claredon Smith",
+      "role": "Web Developer",
+      "location": "Los Angeles, CA",
+      "startDate": "2015-01",
+      "current": true,
+      "highlights": [
+        "Manage accounts worth $4.7 million in annual sales.",
+        "Selected to train 3 new account managers.",
+        "Increased business volume by 150% via customer service initiative."
+      ]
+    },
+    {
+      "company": "Didier Sachs",
+      "role": "Junior Developer",
+      "location": "Los Santos, CA",
+      "startDate": "2008-01",
+      "endDate": "2011-12",
+      "highlights": [
+        "Networked with clients; revenue +47% in 5 months.",
+        "Employee of the Month three times."
+      ]
+    },
+    {
+      "company": "Legal Genius",
+      "role": "Web Developer (intern)",
+      "location": "Pasadena, CA",
+      "startDate": "2011-01",
+      "endDate": "2015-12",
+      "highlights": [
+        "Monitored client accounts and performed forecasts.",
+        "Exceeded 2014 sales target by 47%."
+      ]
+    }
+  ],
+  "education": [
+    {
+      "school": "University",
+      "degree": "Master of Computer Science",
+      "details": [
+        "Graduated Summa Cum Laude.",
+        "Member of Student Association of Project Management."
+      ]
+    },
+    {
+      "school": "University",
+      "degree": "Bachelor of Computer Science",
+      "details": [
+        "Member of Student Association of Computer Science.",
+        "Organized conference for 50+ professionals."
+      ]
+    }
+  ],
+  "certifications": [
+    "PMP — Project Management Institute (2010-05)",
+    "CAPM — Project Management Institute (2007-11)",
+    "PRINCE2 Foundation (2014-04)"
+  ],
+  "awards": [
+    {
+      "title": "Outstanding Achievement Award",
+      "issuer": "Claredon Smith",
+      "date": "2017"
+    },
+    {
+      "title": "Employee of the Month",
+      "issuer": "Didier Sachs",
+      "date": "December 2009"
+    }
+  ]
+}
