@@ -11,6 +11,7 @@ const LABELS = {
   languages: { vi: "Ngôn ngữ", en: "Languages" },
   certifications: { vi: "Chứng chỉ", en: "Certifications" },
   personalInfo: { vi: "Thông tin cá nhân", en: "Personal information" },
+  mySelf: { vi: "Mục tiêu", en: "My Self" },
 } as const;
 
 export type SectionKey = keyof typeof LABELS;
@@ -25,4 +26,8 @@ export function sidebarSummaryLabel(language: PdfLanguage): string {
 
 export function personalInfoLabel(language: PdfLanguage): string {
   return LABELS.personalInfo[language];
+}
+
+export function mySelfLabel(language: PdfLanguage): string {
+  return LABELS.mySelf[language];
 }

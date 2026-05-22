@@ -22,8 +22,12 @@ describe("buildExportRule", () => {
       layoutId: "compact-two",
       language: "vi",
     });
-    expect(rule).toContain("Giới hạn layout Compact Two");
-    expect(rule).toContain('"category"');
-    expect(rule).toContain("80–120");
+    expect(rule).toContain("1 TRANG A4");
+    expect(rule).toContain('"level"');
+    expect(rule).toContain("40-100");
+    expect(rule).toMatch(/\*\*3\*\* công ty/);
+    expect(rule).toContain("KHÔNG LẶP");
+    expect(rule).toContain("Mỗi section chỉ làm MỘT việc");
+    expect(rule).toContain("Checklist trước khi trả JSON");
   });
 });

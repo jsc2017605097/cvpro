@@ -1,7 +1,10 @@
-import type { CVData, SkillGroup } from "@/schemas/cv.schema";
+import type { CVData, SkillGroup, SkillRated } from "@/schemas/cv.schema";
+import { isSkillRatedArray } from "@/schemas/cv.schema";
 
 const MAX_GROUPS = 7;
 const MAX_ITEMS_PER_GROUP = 6;
+const MAX_RATED = 8;
+const STAGGER_LEVELS = [90, 85, 80, 75, 70, 65, 60, 55];
 
 type Lang = "vi" | "en";
 
@@ -170,6 +173,31 @@ function groupSkillsHeuristic(flat: string[], lang: Lang): SkillGroup[] {
   return capGroups(groups);
 }
 
+export function normalizeToRatedSkills(
+  skills: CVData["skills"],
+  _lang: Lang,
+  options?: { stagger?: boolean }
+): SkillRated[] {
+  if (!skills?.length) return [];
+
+  if (isSkillRatedArray(skills)) {
+    return skills.slice(0, MAX_RATED);
+  }
+
+  let flat: string[] = [];
+  if (isSkillGroupArray(skills)) {
+    for (const g of skills) flat.push(...g.items);
+  } else {
+    flat = skills as string[];
+  }
+
+  const unique = [...new Set(flat.map((s) => s.trim()).filter(Boolean))];
+  return unique.slice(0, MAX_RATED).map((name, i) => ({
+    name,
+    level: options?.stagger ? (STAGGER_LEVELS[i] ?? 70) : 70,
+  }));
+}
+
 export function normalizeSkills(
   skills: CVData["skills"],
   lang: Lang
@@ -207,6 +235,9 @@ export function normalizeSkills(
 
 export function formatSkillsPreview(skills: CVData["skills"]): string {
   if (!skills?.length) return "";
+  if (isSkillRatedArray(skills)) {
+    return skills.map((s) => `${s.name} (${s.level}%)`).join(" · ");
+  }
   if (isSkillGroupArray(skills)) {
     return skills
       .map((g) => `${g.category}: ${g.items.join(", ")}`)

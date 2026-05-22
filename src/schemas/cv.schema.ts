@@ -47,6 +47,26 @@ export const SkillGroupSchema = z.object({
 });
 export type SkillGroup = z.infer<typeof SkillGroupSchema>;
 
+export const SkillRatedSchema = z.object({
+  name: z.string().min(1),
+  level: z.number().int().min(0).max(100),
+});
+export type SkillRated = z.infer<typeof SkillRatedSchema>;
+
+export function isSkillRatedArray(
+  skills: unknown
+): skills is z.infer<typeof SkillRatedSchema>[] {
+  if (!Array.isArray(skills) || skills.length === 0) return false;
+  const first = skills[0];
+  return (
+    typeof first === "object" &&
+    first !== null &&
+    "name" in first &&
+    "level" in first &&
+    typeof (first as { level: unknown }).level === "number"
+  );
+}
+
 function isSkillGroupArray(skills: unknown): skills is z.infer<typeof SkillGroupSchema>[] {
   return (
     Array.isArray(skills) &&
@@ -59,7 +79,11 @@ function isSkillGroupArray(skills: unknown): skills is z.infer<typeof SkillGroup
 }
 
 const SkillsFieldSchema = z
-  .union([z.array(z.string().min(1)).max(24), z.array(SkillGroupSchema).max(8)])
+  .union([
+    z.array(SkillRatedSchema).max(12),
+    z.array(z.string().min(1)).max(24),
+    z.array(SkillGroupSchema).max(8),
+  ])
   .optional()
   .superRefine((skills, ctx) => {
     if (!skills || !isSkillGroupArray(skills)) return;

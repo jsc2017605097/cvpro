@@ -14,10 +14,10 @@ export const LAYOUTS: LayoutTemplate[] = [
     id: "compact-two",
     name: { vi: "Compact — 2 cột", en: "Compact — Two columns" },
     description: {
-      vi: "Sidebar TopCV, kỹ năng nhóm, section teal, mục tiêu ~2 trang A4",
-      en: "TopCV-style sidebar, grouped skills, teal sections, ~2 A4 pages",
+      vi: "2 cột Ofspace — thiết kế cho đúng 1 trang A4 (rule nội dung chặt)",
+      en: "Ofspace two-column — designed for exactly one A4 page (strict content limits)",
     },
-    previewImage: "/thumbnails/layout-compact-two.svg",
+    previewImage: "/thumbnails/layout-compact-two.png",
   },
   {
     id: "minimal-ats",

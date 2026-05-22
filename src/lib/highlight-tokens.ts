@@ -1,5 +1,6 @@
 import type { CVData } from "@/schemas/cv.schema";
 import type { SkillGroup } from "@/schemas/cv.schema";
+import { isSkillRatedArray } from "@/schemas/cv.schema";
 
 function isSkillGroupArray(
   skills: CVData["skills"]
@@ -18,7 +19,9 @@ export function collectHighlightTokens(data: CVData): string[] {
   const set = new Set<string>();
 
   if (data.skills?.length) {
-    if (isSkillGroupArray(data.skills)) {
+    if (isSkillRatedArray(data.skills)) {
+      for (const s of data.skills) set.add(s.name);
+    } else if (isSkillGroupArray(data.skills)) {
       for (const g of data.skills) {
         for (const item of g.items) set.add(item);
       }

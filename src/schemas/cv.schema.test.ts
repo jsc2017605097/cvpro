@@ -1,5 +1,5 @@
 import { describe, it, expect } from "vitest";
-import type { SkillGroup } from "./cv.schema";
+import type { SkillGroup, SkillRated } from "./cv.schema";
 import { CVDataSchema, emptyCVData } from "./cv.schema";
 
 describe("CVDataSchema", () => {
@@ -93,6 +93,50 @@ describe("CVDataSchema", () => {
     const skills = Array.from({ length: 25 }, (_, i) => `Skill ${i + 1}`);
     const result = CVDataSchema.safeParse({
       ...emptyCVData(),
+      skills,
+    });
+    expect(result.success).toBe(false);
+  });
+
+  it("accepts skills as SkillRated[]", () => {
+    const skills: SkillRated[] = [
+      { name: "Java", level: 90 },
+      { name: "Spring Boot", level: 85 },
+    ];
+    const result = CVDataSchema.safeParse({
+      ...emptyCVData(),
+      personal: { fullName: "Test" },
+      skills,
+    });
+    expect(result.success).toBe(true);
+  });
+
+  it("rejects SkillRated with level > 100", () => {
+    const result = CVDataSchema.safeParse({
+      ...emptyCVData(),
+      personal: { fullName: "Test" },
+      skills: [{ name: "Java", level: 101 }],
+    });
+    expect(result.success).toBe(false);
+  });
+
+  it("rejects SkillRated with level < 0", () => {
+    const result = CVDataSchema.safeParse({
+      ...emptyCVData(),
+      personal: { fullName: "Test" },
+      skills: [{ name: "Java", level: -1 }],
+    });
+    expect(result.success).toBe(false);
+  });
+
+  it("rejects rated skills array over 12 items", () => {
+    const skills = Array.from({ length: 13 }, (_, i) => ({
+      name: `Skill${i}`,
+      level: 70,
+    }));
+    const result = CVDataSchema.safeParse({
+      ...emptyCVData(),
+      personal: { fullName: "Test" },
       skills,
     });
     expect(result.success).toBe(false);

@@ -1,8 +1,11 @@
 import { Link } from "react-router-dom";
 import type { CVData } from "@/schemas/cv.schema";
 import { getLayoutById } from "@/data/layouts";
+import { COMPACT_TWO_ONE_PAGE } from "@/lib/compact-two-one-page";
 import { countWords } from "@/lib/truncate-text";
-import { formatSkillsPreview } from "@/lib/skills";
+import { normalizeToRatedSkills } from "@/lib/skills";
+import { isSkillRatedArray } from "@/schemas/cv.schema";
+import { CvPdfPreview } from "@/features/pdf/CvPdfPreview";
 import { DownloadButton } from "@/features/pdf/DownloadButton";
 import { Button } from "@/components/ui/design/Button";
 import { clearDraft } from "@/lib/draft-storage";
@@ -16,13 +19,63 @@ interface Props {
 export function StepPreview({ cvData, layoutId, onBack }: Props) {
   const layout = getLayoutById(layoutId);
   const warnings: string[] = [];
+  const L = COMPACT_TWO_ONE_PAGE;
 
   if (layoutId === "compact-two") {
-    if (cvData.summary && countWords(cvData.summary) > 120) {
-      warnings.push("Mục tiêu nên ≤ 120 từ để vừa ~2 trang PDF.");
+    warnings.push(
+      "Layout Compact (Ofspace) chỉ đẹp trên **1 trang A4** — PDF tự cắt nếu quá dài. Khi import, AI phải tuân rule: mỗi ý một section, không lặp summary/bullet/skills."
+    );
+    if (cvData.summary && countWords(cvData.summary) > L.summaryMaxWords) {
+      warnings.push(
+        `Mục tiêu nên ≤ ${L.summaryMaxWords} từ (tối đa 3 câu) để vừa 1 trang.`
+      );
     }
-    if (cvData.projects && cvData.projects.length > 4) {
-      warnings.push("Nên tối đa 4 dự án với layout Compact.");
+    if (cvData.experience && cvData.experience.length > L.experienceMaxJobs) {
+      warnings.push(
+        `Nên tối đa ${L.experienceMaxJobs} công ty; mỗi job ≤ ${L.experienceMaxBullets} bullet.`
+      );
+    }
+    for (const job of cvData.experience ?? []) {
+      if (job.highlights.length > L.experienceMaxBullets) {
+        warnings.push(
+          `Công ty "${job.company}": tối đa ${L.experienceMaxBullets} bullet trên PDF.`
+        );
+        break;
+      }
+    }
+    if (cvData.projects && cvData.projects.length > L.projectsMax) {
+      warnings.push(`Nên tối đa ${L.projectsMax} dự án (hoặc bỏ projects).`);
+    }
+    if (cvData.education && cvData.education.length > L.educationMax) {
+      warnings.push(`Chỉ hiển thị ${L.educationMax} mục học vấn trên PDF.`);
+    }
+    const skillCount = normalizeToRatedSkills(
+      cvData.skills,
+      cvData.meta.language
+    ).length;
+    if (skillCount > L.skillsMax) {
+      warnings.push(`Chỉ hiển thị ${L.skillsMax} kỹ năng (skill bars) trên PDF.`);
+    }
+    if (cvData.certifications && cvData.certifications.length > L.certificationsMax) {
+      warnings.push(`Chỉ hiển thị ${L.certificationsMax} chứng chỉ trên PDF.`);
+    }
+    const skillsFlat =
+      Array.isArray(cvData.skills) &&
+      cvData.skills.length > 0 &&
+      typeof cvData.skills[0] === "string";
+    if (skillsFlat) {
+      warnings.push(
+        "Kỹ năng dạng danh sách chữ — dùng [{ name, level }] cho thanh %."
+      );
+    }
+    if (
+      cvData.skills?.length &&
+      !isSkillRatedArray(cvData.skills) &&
+      normalizeToRatedSkills(cvData.skills, cvData.meta.language).every(
+        (s) => s.level === 70
+      )
+    ) {
+      warnings.push("Gợi ý: gửi skills kèm level (40–100).");
     }
   }
 
@@ -36,43 +89,14 @@ export function StepPreview({ cvData, layoutId, onBack }: Props) {
         </ul>
       )}
       {layout && (
-        <div className="flex flex-col gap-3 sm:flex-row sm:items-start">
-          <img
-            src={layout.previewImage}
-            alt=""
-            className="w-full max-w-[200px] shrink-0 rounded-[var(--rounded-md)] border border-[var(--color-hairline)] bg-[var(--color-surface-card)] object-cover object-top"
-          />
-          <div>
-            <p className="text-sm font-medium text-[var(--color-ink)]">
-              Layout: {layout.name.vi}
-            </p>
-            <p className="mt-1 text-sm text-[var(--color-body)]">
-              {layout.description.vi}
-            </p>
-          </div>
-        </div>
+        <p className="text-sm text-[var(--color-body)]">
+          <span className="font-medium text-[var(--color-ink)]">{layout.name.vi}</span>
+          {" — "}
+          {layout.description.vi}
+        </p>
       )}
 
-      <div className="rounded-[var(--rounded-lg)] border border-[var(--color-hairline)] bg-[var(--color-surface-soft)] p-6">
-        <p className="text-sm text-[var(--color-muted)]">Xem trước nội dung</p>
-        <h2 className="font-display mt-2 text-2xl text-[var(--color-ink)]">
-          {cvData.personal.fullName}
-        </h2>
-        {cvData.personal.title && (
-          <p className="mt-1 text-[var(--color-body)]">{cvData.personal.title}</p>
-        )}
-        {cvData.summary && (
-          <p className="mt-4 text-sm leading-relaxed text-[var(--color-body)]">
-            {cvData.summary}
-          </p>
-        )}
-        {cvData.skills && formatSkillsPreview(cvData.skills) && (
-          <p className="mt-4 text-sm text-[var(--color-body)]">
-            <span className="font-medium text-[var(--color-ink)]">Kỹ năng: </span>
-            {formatSkillsPreview(cvData.skills)}
-          </p>
-        )}
-      </div>
+      <CvPdfPreview cvData={cvData} layoutId={layoutId} />
 
       <div className="flex flex-wrap items-center gap-3">
         <DownloadButton cvData={cvData} layoutId={layoutId} />

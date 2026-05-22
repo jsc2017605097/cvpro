@@ -10,6 +10,12 @@ export const pdfColors = {
   compactAccent: "#1F4E5F",
   compactOnAccent: "#FFFFFF",
   onInk: "#ffffff",
+  ofspaceGold: "#F9CB81",
+  ofspaceInk: "#2A2C2E",
+  ofspaceMuted: "#6A6B6D",
+  ofspaceHighlight: "#E7D4B7",
+  ofspaceBarTrack: "#ECECEC",
+  ofspacePageBg: "#FFFFFF",
 };
 
 export const pdfFontFamily = "NotoSans";
@@ -37,6 +43,9 @@ const PDF_CONTENT_WIDTH_PT = PDF_PAGE_WIDTH_PT - pdfSpace.pagePadding * 2;
 export const pdfLayout = {
   sidebarWidthPt: PDF_CONTENT_WIDTH_PT * 0.35,
   bodyWidthPt: PDF_CONTENT_WIDTH_PT * 0.65,
+  ofspaceMainWidthPt: PDF_CONTENT_WIDTH_PT * 0.62,
+  ofspaceRailWidthPt: PDF_CONTENT_WIDTH_PT * 0.38,
+  ofspaceSkillBarWidthPt: 120,
 };
 
 export const pdfStyles = StyleSheet.create({
@@ -324,5 +333,197 @@ export const pdfStyles = StyleSheet.create({
   },
   compactEntryBlock: {
     marginBottom: 8,
+  },
+  ofspaceHeader: {
+    flexDirection: "column",
+    marginBottom: 12,
+  },
+  ofspaceName: {
+    fontSize: 26,
+    fontWeight: 700,
+    color: pdfColors.ofspaceGold,
+    marginBottom: 6,
+    lineHeight: 1.2,
+  },
+  ofspaceTitle: {
+    fontSize: 16,
+    fontWeight: 500,
+    color: pdfColors.ofspaceMuted,
+    marginBottom: 4,
+    lineHeight: 1.3,
+  },
+  ofspaceContentRow: {
+    flexDirection: "row",
+    alignItems: "flex-start",
+    gap: 18,
+  },
+  ofspaceMainColumn: {
+    width: "58%",
+    flexGrow: 0,
+    flexShrink: 0,
+    paddingRight: 4,
+  },
+  ofspaceRailColumn: {
+    width: "42%",
+    flexGrow: 0,
+    flexShrink: 0,
+    paddingLeft: 2,
+  },
+  ofspaceSectionBlock: {
+    marginBottom: 14,
+  },
+  ofspaceSectionTitleWrap: {
+    marginBottom: 8,
+    marginTop: 2,
+  },
+  ofspaceSectionTitleText: {
+    fontSize: 13,
+    fontWeight: 700,
+    color: pdfColors.ofspaceInk,
+    marginBottom: 3,
+  },
+  ofspaceSectionHighlightBar: {
+    height: 6,
+    backgroundColor: pdfColors.ofspaceHighlight,
+    opacity: 0.25,
+    marginBottom: 2,
+  },
+  ofspaceBodyText: {
+    fontSize: 9,
+    color: pdfColors.ofspaceInk,
+    lineHeight: 1.4,
+    opacity: 0.9,
+  },
+  ofspaceSkillRow: {
+    marginBottom: 8,
+    width: "100%",
+  },
+  ofspaceSkillName: {
+    fontSize: 10,
+    fontWeight: 500,
+    color: pdfColors.ofspaceInk,
+    marginBottom: 2,
+  },
+  ofspaceContactRow: {
+    flexDirection: "row",
+    alignItems: "flex-start",
+    marginBottom: 10,
+  },
+  ofspaceContactIconCircle: {
+    width: 16,
+    height: 16,
+    borderRadius: 8,
+    backgroundColor: pdfColors.ofspaceGold,
+    alignItems: "center",
+    justifyContent: "center",
+    marginRight: 8,
+    flexShrink: 0,
+  },
+  ofspaceContactIconLetter: {
+    fontSize: 7,
+    fontWeight: 700,
+    color: pdfColors.ofspaceInk,
+    textAlign: "center",
+    lineHeight: 1,
+  },
+  ofspaceContactValue: {
+    fontSize: 9,
+    color: pdfColors.ofspaceInk,
+    opacity: 0.8,
+    flexGrow: 1,
+    flexShrink: 1,
+    lineHeight: 1.35,
+    maxWidth: "85%",
+  },
+  ofspaceExperienceCompany: {
+    fontSize: 11,
+    fontWeight: 700,
+    color: pdfColors.ofspaceInk,
+    marginBottom: 2,
+  },
+  ofspaceExperienceMetaRow: {
+    flexDirection: "column",
+    marginBottom: 5,
+  },
+  ofspaceExperienceRole: {
+    fontSize: 9,
+    color: pdfColors.ofspaceMuted,
+    opacity: 0.75,
+    marginBottom: 2,
+  },
+  ofspaceExperienceDate: {
+    fontSize: 9,
+    color: pdfColors.ofspaceMuted,
+    opacity: 0.75,
+  },
+  ofspaceBullet: {
+    fontSize: 9,
+    color: pdfColors.ofspaceInk,
+    lineHeight: 1.4,
+    marginBottom: 3,
+    marginLeft: 8,
+    opacity: 0.9,
+  },
+  ofspaceEntryBlock: {
+    marginBottom: 8,
+  },
+  ofspaceProjectBlock: {
+    marginBottom: 10,
+    marginTop: 4,
+  },
+  ofspaceProjectName: {
+    fontSize: 11,
+    fontWeight: 700,
+    color: pdfColors.ofspaceInk,
+    marginBottom: 2,
+  },
+  ofspaceProjectTech: {
+    fontSize: 9,
+    color: pdfColors.ofspaceMuted,
+    opacity: 0.75,
+    marginBottom: 3,
+  },
+  ofspaceEntryDivider: {
+    height: 1,
+    backgroundColor: pdfColors.hairline,
+    marginVertical: 6,
+  },
+  ofspaceEducationWrap: {
+    marginBottom: 10,
+    paddingBottom: 4,
+  },
+  ofspaceEducationDegree: {
+    fontSize: 11,
+    fontWeight: 600,
+    color: pdfColors.ofspaceInk,
+    marginBottom: 4,
+    lineHeight: 1.35,
+  },
+  ofspaceEducationMeta: {
+    fontSize: 9,
+    color: pdfColors.ofspaceMuted,
+    lineHeight: 1.35,
+    marginBottom: 2,
+  },
+  ofspaceProjectsSection: {
+    marginTop: 6,
+    marginBottom: 12,
+  },
+  ofspaceCertTitle: {
+    fontSize: 10,
+    fontWeight: 600,
+    color: pdfColors.ofspaceInk,
+    marginBottom: 2,
+  },
+  ofspaceCertMeta: {
+    fontSize: 9,
+    color: pdfColors.ofspaceMuted,
+    opacity: 0.7,
+    marginBottom: 8,
+  },
+  ofspaceLanguagesText: {
+    fontSize: 9,
+    color: pdfColors.ofspaceInk,
+    opacity: 0.8,
   },
 });
