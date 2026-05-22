@@ -41,6 +41,61 @@ export const ProjectItemSchema = z.object({
   highlights: z.array(z.string()).optional(),
 });
 
+export const SkillGroupSchema = z.object({
+  category: z.string().min(1),
+  items: z.array(z.string().min(1)).min(1).max(8),
+});
+export type SkillGroup = z.infer<typeof SkillGroupSchema>;
+
+export const SkillRatedSchema = z.object({
+  name: z.string().min(1),
+  level: z.number().int().min(0).max(100),
+});
+export type SkillRated = z.infer<typeof SkillRatedSchema>;
+
+export function isSkillRatedArray(
+  skills: unknown
+): skills is z.infer<typeof SkillRatedSchema>[] {
+  if (!Array.isArray(skills) || skills.length === 0) return false;
+  const first = skills[0];
+  return (
+    typeof first === "object" &&
+    first !== null &&
+    "name" in first &&
+    "level" in first &&
+    typeof (first as { level: unknown }).level === "number"
+  );
+}
+
+function isSkillGroupArray(skills: unknown): skills is z.infer<typeof SkillGroupSchema>[] {
+  return (
+    Array.isArray(skills) &&
+    skills.length > 0 &&
+    typeof skills[0] === "object" &&
+    skills[0] !== null &&
+    "category" in skills[0] &&
+    "items" in skills[0]
+  );
+}
+
+const SkillsFieldSchema = z
+  .union([
+    z.array(SkillRatedSchema).max(12),
+    z.array(z.string().min(1)).max(24),
+    z.array(SkillGroupSchema).max(8),
+  ])
+  .optional()
+  .superRefine((skills, ctx) => {
+    if (!skills || !isSkillGroupArray(skills)) return;
+    const total = skills.reduce((n, g) => n + g.items.length, 0);
+    if (total > 24) {
+      ctx.addIssue({
+        code: z.ZodIssueCode.custom,
+        message: "Total skill items must be ≤ 24",
+      });
+    }
+  });
+
 export const CVDataSchema = z.object({
   meta: z.object({
     language: z.enum(["vi", "en"]),
@@ -49,10 +104,10 @@ export const CVDataSchema = z.object({
   }),
   personal: PersonalSchema,
   summary: z.string().optional(),
-  skills: z.array(z.string().min(1)).optional(),
-  experience: z.array(ExperienceItemSchema).optional(),
+  skills: SkillsFieldSchema,
+  experience: z.array(ExperienceItemSchema).max(6).optional(),
   education: z.array(EducationItemSchema).optional(),
-  projects: z.array(ProjectItemSchema).optional(),
+  projects: z.array(ProjectItemSchema).max(5).optional(),
   certifications: z.array(z.string()).optional(),
   languages: z.array(z.string()).optional(),
 });

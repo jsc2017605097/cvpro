@@ -1,0 +1,83 @@
+{
+  "meta": {
+    "language": "vi",
+    "presetId": "dev-mid-senior",
+    "layoutId": "compact-two"
+  },
+  "personal": {
+    "fullName": "Nguyễn Văn A",
+    "title": "Backend / Full-stack Developer",
+    "email": "dev@example.com",
+    "phone": "0900000000",
+    "location": "Hà Nội, Việt Nam",
+    "website": "https://example.com/cv"
+  },
+  "summary": "Software Engineer với hơn 4 năm kinh nghiệm phát triển backend và full-stack trong domain enterprise. Thành thạo Java Spring Boot, Node.js, Docker và PostgreSQL. Tập trung thiết kế API, tối ưu database và triển khai CI/CD.",
+  "skills": [
+    { "name": "Java", "level": 90 },
+    { "name": "Spring Boot", "level": 85 },
+    { "name": "Node.js", "level": 82 },
+    { "name": "PostgreSQL", "level": 80 },
+    { "name": "Docker", "level": 75 },
+    { "name": "Kubernetes", "level": 70 },
+    { "name": "Problem Solving", "level": 88 },
+    { "name": "Team Leadership", "level": 72 }
+  ],
+  "experience": [
+    {
+      "company": "Bell24 Vietnam",
+      "role": "Backend / Full-stack Developer",
+      "location": "Hà Nội",
+      "startDate": "2022-03",
+      "current": true,
+      "highlights": [
+        "Phát triển hệ thống **Spring Boot** và **Node.js** phục vụ hàng nghìn người dùng.",
+        "Giảm latency từ ~900ms xuống dưới 300ms nhờ tối ưu query **PostgreSQL**.",
+        "Migrate module PHP legacy sang kiến trúc service **Node.js**.",
+        "Thiết lập **Docker Compose** giảm thời gian setup dưới 15 phút."
+      ]
+    },
+    {
+      "company": "MobiFone Solution",
+      "role": "Backend Developer",
+      "location": "Hà Nội",
+      "startDate": "2025-05",
+      "current": true,
+      "highlights": [
+        "Thiết kế API microservices cho domain viễn thông.",
+        "Tối ưu logging và monitoring trên **Linux** production."
+      ]
+    }
+  ],
+  "education": [
+    {
+      "school": "Đại học Bách Khoa",
+      "degree": "Cử nhân Công nghệ thông tin",
+      "startDate": "2017",
+      "endDate": "2021"
+    },
+    {
+      "school": "THPT Chuyên",
+      "degree": "Tốt nghiệp",
+      "endDate": "2017"
+    }
+  ],
+  "projects": [
+    {
+      "name": "Internal API Gateway Platform",
+      "techStack": ["Apache APISIX", "JWT"],
+      "description": "Nền tảng API Gateway nội bộ cho authentication và routing.",
+      "highlights": ["Chuẩn hóa authentication giữa các ứng dụng."]
+    },
+    {
+      "name": "Enterprise Data Dashboard",
+      "techStack": ["Vue 3", "PostgreSQL"],
+      "description": "Dashboard quản lý dữ liệu với filter và export."
+    }
+  ],
+  "certifications": [
+    "Docker & Kubernetes Fundamentals — Udemy (2024)",
+    "AWS Cloud Practitioner — Self Learning (2025)"
+  ],
+  "languages": ["Tiếng Việt — Native", "Tiếng Anh — Technical reading"]
+}

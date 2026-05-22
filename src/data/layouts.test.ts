@@ -12,7 +12,7 @@ describe("layouts", () => {
 
   it("each layout has previewImage", () => {
     for (const layout of LAYOUTS) {
-      expect(layout.previewImage).toMatch(/^\/thumbnails\/layout-/);
+      expect(layout.previewImage).toMatch(/^\/thumbnails\/layout-.*\.(svg|png)$/);
     }
   });
 });

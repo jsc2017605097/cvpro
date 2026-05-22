@@ -1,11 +1,13 @@
 import type { ProfilePreset } from "@/types/preset";
 import { emptyCVData } from "@/schemas/cv.schema";
+import { compactTwoOnePageLimitsBlock } from "./compact-two-one-page";
 
 interface BuildExportRuleInput {
   preset: ProfilePreset;
   layoutId: string;
   language: "vi" | "en";
 }
+
 
 export function buildExportRule(input: BuildExportRuleInput): string {
   const { preset, layoutId, language } = input;
@@ -18,18 +20,64 @@ export function buildExportRule(input: BuildExportRuleInput): string {
   if (layoutId === "compact-two") {
     sample.personal = {
       ...sample.personal,
-      avatarUrl: isVi
-        ? "https://example.com/anh-dai-dien.jpg"
-        : "https://example.com/profile-photo.jpg",
+      title: isVi ? "Backend Developer" : "Backend Developer",
+      email: "dev@example.com",
+      phone: "0900000000",
+      location: isVi ? "Hà Nội" : "Boston, MA",
     };
+    sample.summary = isVi
+      ? "Backend 5+ năm, domain banking & microservices; ownership thiết kế API và release production."
+      : "Backend 5+ years in banking microservices; owns API design and production releases.";
+    sample.skills = [
+      { name: "Java", level: 90 },
+      { name: "Spring Boot", level: 85 },
+      { name: "PostgreSQL", level: 80 },
+      { name: "Docker", level: 75 },
+      { name: "System Design", level: 70 },
+    ];
+    sample.experience = [
+      {
+        company: "Công ty A",
+        role: "Senior Backend Developer",
+        startDate: "2023-01",
+        current: true,
+        highlights: [
+          "Giảm 40% latency API nhờ cache **Redis**.",
+          "Thiết kế microservices ~2M request/ngày.",
+          "CI/CD **GitLab** + **Kubernetes**, release ~20 phút.",
+        ],
+      },
+      {
+        company: "Công ty B",
+        role: "Backend Developer",
+        startDate: "2021-01",
+        endDate: "2022-12",
+        highlights: [
+          "Xây ERP **Node.js** cho 10k+ user.",
+          "API Gateway **APISIX**, JWT auth.",
+        ],
+      },
+    ];
+    sample.education = [
+      {
+        school: "Đại học X",
+        degree: "Cử nhân CNTT",
+        endDate: "2020",
+      },
+    ];
+    sample.projects = [
+      {
+        name: "API Platform",
+        techStack: ["Java", "Kafka"],
+        description: "Gateway nội bộ, auth tập trung.",
+        highlights: ["Giảm duplicate integration."],
+      },
+    ];
+    sample.certifications = ["AWS Cloud Practitioner (2024)"];
+    sample.languages = ["Tiếng Việt — Native", "English — Technical"];
   }
 
-  const avatarHint =
-    layoutId === "compact-two"
-      ? isVi
-        ? "\n- Layout 2 cột: điền `personal.avatarUrl` bằng URL ảnh JPG/PNG công khai (https://)."
-        : "\n- Two-column layout: set `personal.avatarUrl` to a public https image URL."
-      : "";
+  const avatarHint = "";
 
   const sectionLines = preset.sections
     .map(
@@ -65,6 +113,9 @@ export function buildExportRule(input: BuildExportRuleInput): string {
     "",
     isVi ? "## Quy tắc" : "## Rules",
     hints + avatarHint,
+    layoutId === "compact-two"
+      ? ["", compactTwoOnePageLimitsBlock(language)].join("\n")
+      : "",
     outputRule,
     "",
     isVi
