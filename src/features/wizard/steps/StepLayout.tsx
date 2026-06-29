@@ -20,7 +20,7 @@ export function StepLayout({ draft, preset, onUpdate, onNext }: Props) {
   return (
     <div className="space-y-6">
       <p className="text-sm text-[var(--color-body)]">
-        Chọn bố cục PDF và ngôn ngữ nội dung CV / rule export.
+        Chọn bố cục PDF .
       </p>
 
       <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
