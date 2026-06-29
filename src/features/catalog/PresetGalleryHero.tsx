@@ -6,7 +6,7 @@ export function PresetGalleryHero() {
       </h1>
       <p className="mt-4 max-w-xl text-base leading-relaxed text-[var(--color-body)]">
         Chọn mẫu theo vai trò, export rule cho ChatGPT / Claude / Gemini, import
-        JSON — nhận PDF chuẩn layout.
+        JSON — nhận PDF chuẩn layout
       </p>
     </section>
   );
